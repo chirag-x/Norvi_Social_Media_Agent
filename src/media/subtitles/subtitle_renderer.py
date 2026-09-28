@@ -1,0 +1,3 @@
+"""
+Deterministic subtitle rendering.
+"""

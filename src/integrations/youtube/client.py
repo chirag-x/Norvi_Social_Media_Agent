@@ -1,0 +1,3 @@
+"""
+Shared YouTube integration client.
+"""

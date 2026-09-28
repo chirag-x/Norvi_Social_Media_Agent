@@ -1,0 +1,1 @@
+"""Publishing queue page."""

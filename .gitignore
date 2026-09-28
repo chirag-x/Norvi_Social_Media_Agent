@@ -1,0 +1,85 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment secrets
+.env*
+.env.local
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Type checking
+.mypy_cache/
+.pyright/
+
+# folders
+/tests/
+/scripts/
+
+# Build
+build/
+dist/
+*.egg-info/
+
+# Runtime user data
+/runtime/
+runtime/database/*
+runtime/projects/*
+runtime/sources/*
+runtime/proxies/*
+runtime/clips/*
+runtime/captions/*
+runtime/covers/*
+runtime/analytics/*
+runtime/cache/*
+runtime/temp/*
+runtime/logs/*
+# Keep runtime folders
+!runtime/database/.gitkeep
+!runtime/projects/.gitkeep
+!runtime/sources/.gitkeep
+!runtime/proxies/.gitkeep
+!runtime/clips/.gitkeep
+!runtime/captions/.gitkeep
+!runtime/covers/.gitkeep
+!runtime/analytics/.gitkeep
+!runtime/cache/.gitkeep
+!runtime/temp/.gitkeep
+!runtime/logs/.gitkeep
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Media output
+*.mp4
+*.mov
+*.mkv
+*.avi
+*.webm
+*.wav
+*.mp3
+*.aac
+
+# Logs
+*.log

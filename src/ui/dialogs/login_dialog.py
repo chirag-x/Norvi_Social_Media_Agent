@@ -1,0 +1,1 @@
+"""Norvi login / activation dialog."""

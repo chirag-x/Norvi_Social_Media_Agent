@@ -1,0 +1,3 @@
+"""
+Local scene detection.
+"""

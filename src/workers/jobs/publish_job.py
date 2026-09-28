@@ -1,0 +1,1 @@
+"""Background publishing job."""

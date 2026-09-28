@@ -1,0 +1,1 @@
+"""Background rendering job."""

@@ -1,0 +1,3 @@
+"""
+Instagram publishing / analytics adapter.
+"""

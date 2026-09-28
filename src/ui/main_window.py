@@ -1,0 +1,3 @@
+"""
+Main desktop window.
+"""

@@ -1,0 +1,3 @@
+"""
+Facebook publishing / analytics adapter.
+"""

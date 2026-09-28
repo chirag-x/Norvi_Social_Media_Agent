@@ -1,0 +1,16 @@
+# Dependencies will be finalized after the technology stack is locked.
+#
+# Expected categories:
+#
+# PySide6
+# httpx
+# pydantic
+# sqlalchemy / sqlite helpers if selected
+# faster-whisper
+# opencv-python
+# scenedetect
+# APScheduler or selected scheduler
+# pytest
+# pytest-asyncio
+#
+# FFmpeg and Ollama are external runtime dependencies.
