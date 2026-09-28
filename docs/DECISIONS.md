@@ -317,66 +317,79 @@ Accepted.
 
 ## ADR-P01 — Desktop UI Framework
 
-Recommended:
-PySide6.
+Decision:
+Use PySide6.
 
-Final:
-Pending confirmation.
+Status:
+Accepted.
 
 ---
 
 ## ADR-P02 — Local Database
 
-Recommended:
-SQLite.
+Decision:
+Use SQLite.
 
-Final:
-Pending confirmation.
+Status:
+Accepted.
 
 ---
 
 ## ADR-P03 — Local Transcription
 
-Recommended:
-faster-whisper or compatible local solution.
+Decision:
+Use faster-whisper.
 
-Final:
-Pending confirmation.
+Status:
+Accepted.
 
 ---
 
 ## ADR-P04 — Scene Detection
 
-Candidate:
-PySceneDetect / OpenCV pipeline.
+Decision:
+Use PySceneDetect and OpenCV (opencv-python-headless).
 
-Final:
-Pending confirmation.
+Status:
+Accepted.
 
 ---
 
 ## ADR-P05 — Secure Credential Storage
 
-Final implementation:
-Pending confirmation.
+Decision:
+Use keyring for OS-level secure credential storage.
+
+Status:
+Accepted.
 
 ---
 
 ## ADR-P06 — Scheduler
 
-Final local scheduler/queue library:
-Pending confirmation.
+Decision:
+Use APScheduler for persistent local task scheduling.
+
+Status:
+Accepted.
 
 ---
 
 ## ADR-P07 — Exact Ollama Model ID
 
-Exact model string:
-Pending confirmation.
+Decision:
+Use `gemma2:27b` (as the Gemma 31B-class representation) until the specific Gemma 4 model becomes available on the official Ollama registry.
+
+Status:
+Accepted.
 
 ---
 
 ## ADR-P08 — Social API Implementations
 
-Exact supported official integration methods:
-Pending technical verification.
+Decision:
+Use google-api-python-client for YouTube Discovery and Publishing.
+Use official Instagram Graph API and Facebook Graph API via requests for Meta Publishing.
+
+Status:
+Accepted.

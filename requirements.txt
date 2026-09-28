@@ -1,16 +1,35 @@
-# Dependencies will be finalized after the technology stack is locked.
-#
-# Expected categories:
-#
-# PySide6
-# httpx
-# pydantic
-# sqlalchemy / sqlite helpers if selected
-# faster-whisper
-# opencv-python
-# scenedetect
-# APScheduler or selected scheduler
-# pytest
-# pytest-asyncio
-#
-# FFmpeg and Ollama are external runtime dependencies.
+# UI
+PySide6>=6.5.0
+
+# Local Transcription
+faster-whisper>=1.0.0
+
+# Video Scene Detection & Media
+scenedetect>=0.6.3
+opencv-python-headless>=4.8.0
+ffmpeg-python>=0.2.0
+
+# Social API (YouTube, Meta)
+google-api-python-client>=2.100.0
+google-auth>=2.23.0
+google-auth-oauthlib>=1.1.0
+requests>=2.31.0
+
+# Background Tasks & Database
+APScheduler>=3.10.4
+# (Using standard library sqlite3 for database)
+
+# Secure Credential Storage
+keyring>=24.2.0
+
+# General Utilities
+httpx>=0.25.0
+pydantic>=2.4.0
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.1
+
+# External Runtime Dependencies:
+# - FFmpeg (needs to be installed on system or bundled)
+# - Ollama (needs to be installed on system)

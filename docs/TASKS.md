@@ -8,19 +8,19 @@ Planning complete enough to begin technical setup after final stack confirmation
 
 # Phase 0 — Final Technology Lock
 
-- [ ] Confirm final application name.
-- [ ] Confirm PySide6 or alternative desktop UI.
-- [ ] Confirm SQLite implementation.
-- [ ] Confirm local transcription engine.
-- [ ] Confirm video scene detection library.
-- [ ] Confirm FFmpeg packaging strategy.
-- [ ] Confirm exact Ollama model identifier.
-- [ ] Confirm YouTube discovery integration.
-- [ ] Confirm YouTube publishing integration.
-- [ ] Confirm Meta publishing integration.
-- [ ] Confirm local scheduler.
-- [ ] Confirm secure credential storage.
-- [ ] Update DECISIONS.md.
+- [x] Confirm final application name.
+- [x] Confirm PySide6 or alternative desktop UI.
+- [x] Confirm SQLite implementation.
+- [x] Confirm local transcription engine.
+- [x] Confirm video scene detection library.
+- [x] Confirm FFmpeg packaging strategy.
+- [x] Confirm exact Ollama model identifier.
+- [x] Confirm YouTube discovery integration.
+- [x] Confirm YouTube publishing integration.
+- [x] Confirm Meta publishing integration.
+- [x] Confirm local scheduler.
+- [x] Confirm secure credential storage.
+- [x] Update DECISIONS.md.
 
 Exit:
 No unresolved foundational choice.
