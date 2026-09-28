@@ -97,6 +97,10 @@ class LoginView(QWidget):
         success, message, token = result
         if success and token:
             if SessionManager.save_token(token):
+                # Ensure local DB knows about this user
+                from src.storage.daos.user_dao import UserDAO
+                UserDAO().create_or_update(email)
+                
                 self.login_successful.emit()
                 self.reset()
             else:

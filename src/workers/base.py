@@ -12,6 +12,8 @@ class WorkerSignals(QObject):
     error = Signal(tuple)
     result = Signal(object)
     progress = Signal(int)
+    progress_msg = Signal(int, str)  # Added for download progress
+    progress_msg_str = Signal(str)   # Added for transcription progress
 
 class BaseWorker(QRunnable):
     """
@@ -36,7 +38,7 @@ class BaseWorker(QRunnable):
             result = self.fn(*self.args, **self.kwargs)
         except Exception:
             traceback.print_exc()
-            exctype, value = sys.exc_info()
+            exctype, value, tb = sys.exc_info()
             self.signals.error.emit((exctype, value, traceback.format_exc()))
         else:
             self.signals.result.emit(result)

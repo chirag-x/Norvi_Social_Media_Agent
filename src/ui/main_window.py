@@ -63,14 +63,20 @@ class MainWindow(QMainWindow):
         self.login_view.login_successful.connect(self.handle_login_success)
         
         # Register Views
+        from src.ui.views.discover import DiscoverView
+        from src.ui.views.clip_lab import ClipLabView
+        from src.ui.views.publishing_queue import PublishingQueueView
+        from src.ui.views.calendar_view import CalendarView
+        from src.ui.views.analytics import AnalyticsView
+        
         self.views = {
             "login": self.login_view,
             "dashboard": DashboardView(),
-            "discover": PlaceholderView("Discover"),
-            "clip_lab": PlaceholderView("Clip Lab"),
-            "calendar": PlaceholderView("Calendar"),
-            "queue": PlaceholderView("Publishing Queue"),
-            "analytics": PlaceholderView("Analytics"),
+            "discover": DiscoverView(),
+            "clip_lab": ClipLabView(),
+            "calendar": CalendarView(),
+            "queue": PublishingQueueView(),
+            "analytics": AnalyticsView(),
             "settings": SettingsView()
         }
         
@@ -100,7 +106,12 @@ class MainWindow(QMainWindow):
             self.content_stack.setCurrentWidget(self.views[view_name])
 
     def closeEvent(self, event):
-        """Save window state before closing."""
+        """Save window state before closing and shut down background processes."""
         self.settings.setValue("geometry", self.saveGeometry())
         self.settings.setValue("windowState", self.saveState())
+        
+        # Shutdown Ollama if we own the process
+        from src.ai.ollama_manager import OllamaManager
+        OllamaManager.get_instance().stop_safely()
+        
         super().closeEvent(event)

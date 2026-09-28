@@ -85,16 +85,16 @@ Do NOT implement the Norvi server/license backend itself.
 
 # Phase 4 — Ollama Runtime Manager
 
-- [ ] Detect Ollama.
-- [ ] Detect running Ollama.
-- [ ] Start silently.
-- [ ] Health check.
-- [ ] Track process ownership.
-- [ ] Safe stop.
-- [ ] Handle existing external instance.
-- [ ] First-run installation flow.
-- [ ] Installation error state.
-- [ ] No visible terminal window in normal use.
+- [x] Detect Ollama.
+- [x] Detect running Ollama.
+- [x] Start silently.
+- [x] Health check.
+- [x] Track process ownership.
+- [x] Safe stop.
+- [x] Handle existing external instance.
+- [x] First-run installation flow.
+- [x] Installation error state.
+- [x] No visible terminal window in normal use.
 
 Critical test:
 
@@ -104,27 +104,27 @@ App must not kill an Ollama instance that existed before app startup.
 
 # Phase 5 — Gemma Model Manager
 
-- [ ] Define exact model ID/config.
-- [ ] List local models.
-- [ ] Detect required model.
-- [ ] Pull missing model.
-- [ ] Show download progress.
-- [ ] Handle interrupted download.
-- [ ] Verify model.
-- [ ] AI smoke test.
-- [ ] Ready state.
+- [x] Define exact model ID/config.
+- [x] List local models.
+- [x] Detect required model.
+- [x] Pull missing model.
+- [x] Show download progress.
+- [x] Handle interrupted download.
+- [x] Verify model.
+- [x] AI smoke test.
+- [x] Ready state.
 
 ---
 
 # Phase 6 — Local Privacy Storage
 
-- [ ] Application data directories.
-- [ ] Local SQLite database.
-- [ ] Schema versioning.
-- [ ] Secure credentials.
+- [x] Application data directories.
+- [x] Local SQLite database.
+- [x] Schema versioning.
+- [x] Secure credentials.
 - [ ] Client/brand models.
-- [ ] Local settings.
-- [ ] Project model.
+- [x] Local settings.
+- [x] Project model.
 - [ ] Privacy controls.
 - [ ] Cleanup policy.
 
@@ -132,110 +132,110 @@ App must not kill an Ollama instance that existed before app startup.
 
 # Phase 7 — YouTube Discovery
 
-- [ ] Discovery provider interface.
-- [ ] YouTube implementation.
-- [ ] Search field.
-- [ ] Niche multi-select.
-- [ ] Freshness logic.
-- [ ] Result normalization.
-- [ ] Result ranking.
-- [ ] Multi-niche diversification.
-- [ ] Top-five presentation.
-- [ ] Open-on-YouTube action.
-- [ ] Select source.
+- [x] Discovery provider interface.
+- [x] YouTube implementation.
+- [x] Search field.
+- [x] Niche multi-select.
+- [x] Freshness logic.
+- [x] Result normalization.
+- [x] Result ranking.
+- [x] Multi-niche diversification.
+- [x] Top-five presentation.
+- [x] Open-on-YouTube action.
+- [x] Select source.
 
 ---
 
 # Phase 8 — Source & Rights Workflow
 
-- [ ] Selected-source page.
-- [ ] Source metadata.
-- [ ] Rights confirmation.
-- [ ] Duration selector.
-- [ ] 10-second minimum.
-- [ ] 120-second maximum.
-- [ ] Start-analysis action.
+- [x] Selected-source page.
+- [x] Source metadata.
+- [x] Rights confirmation.
+- [x] Duration selector.
+- [x] 10-second minimum.
+- [x] 120-second maximum.
+- [x] Start-analysis action.
 
 ---
 
 # Phase 9 — Media Preparation
 
-- [ ] Approved source acquisition method.
-- [ ] Media validation.
-- [ ] FFmpeg probe.
-- [ ] Audio extraction.
-- [ ] Keyframe generation.
-- [ ] Checksums.
-- [ ] Local source storage.
-- [ ] Cleanup.
+- [x] Approved source acquisition method.
+- [x] Media validation.
+- [x] FFmpeg probe.
+- [x] Audio extraction.
+- [x] Keyframe generation.
+- [x] Checksums.
+- [x] Local source storage.
+- [x] Cleanup.
 
 ---
 
 # Phase 10 — Transcription and Video Understanding
 
-- [ ] Local transcription.
-- [ ] Timestamped transcript.
-- [ ] Scene detection.
-- [ ] Silence detection.
-- [ ] Keyframe extraction.
-- [ ] Topic segmentation.
-- [ ] Optional speaker detection.
-- [ ] Structured analysis representation.
+- [x] Local transcription.
+- [x] Timestamped transcript.
+- [x] Scene detection.
+- [x] Silence detection.
+- [x] Keyframe extraction.
+- [x] Topic segmentation.
+- [x] Optional speaker detection.
+- [x] Structured analysis representation.
 
 ---
 
 # Phase 11 — Gemma Analysis Engine
 
-- [ ] AI gateway.
-- [ ] Prompt architecture.
-- [ ] Structured response schemas.
-- [ ] Complete-source reasoning.
-- [ ] Candidate generation.
-- [ ] Boundary suggestions.
-- [ ] Explanation.
-- [ ] Safety/context flags.
+- [x] AI gateway.
+- [x] Prompt architecture.
+- [x] Structured response schemas.
+- [x] Complete-source reasoning.
+- [x] Candidate generation.
+- [x] Boundary suggestions.
+- [x] Explanation.
+- [x] Safety/context flags.
 
 ---
 
 # Phase 12 — Candidate Ranking
 
-- [ ] Hook score.
-- [ ] Clarity score.
-- [ ] Novelty.
-- [ ] Emotional strength.
-- [ ] Payoff.
-- [ ] Standalone score.
-- [ ] Pacing.
-- [ ] Visual interest.
-- [ ] Duplicate penalty.
-- [ ] Context penalty.
-- [ ] Final score.
-- [ ] Ranking.
+- [x] Hook score.
+- [x] Clarity score.
+- [x] Novelty.
+- [x] Emotional strength.
+- [x] Payoff.
+- [x] Standalone score.
+- [x] Pacing.
+- [x] Visual interest.
+- [x] Duplicate penalty.
+- [x] Context penalty.
+- [x] Final score.
+- [x] Ranking.
 
 ---
 
 # Phase 13 — Clip Lab
 
-- [ ] Candidate cards.
-- [ ] Preview.
-- [ ] Score.
-- [ ] Explanation.
-- [ ] Sort.
-- [ ] Filter.
-- [ ] Approve.
-- [ ] Reject.
-- [ ] Save state.
+- [x] Candidate cards.
+- [x] Preview.
+- [x] Score.
+- [x] Explanation.
+- [x] Sort.
+- [x] Filter.
+- [x] Approve.
+- [x] Reject.
+- [x] Save state.
 
 ---
 
 # Phase 14 — Video Rendering
 
-- [ ] Exact trim.
-- [ ] 9:16 output.
-- [ ] Reframing.
+- [x] Exact trim.
+- [x] 9:16 output.
+- [x] Reframing.
 - [ ] Subject tracking baseline.
 - [ ] Audio normalization.
-- [ ] Export.
+- [x] Export.
 - [ ] Render validation.
 - [ ] Version tracking.
 
@@ -243,11 +243,11 @@ App must not kill an Ollama instance that existed before app startup.
 
 # Phase 15 — Captions
 
-- [ ] Caption timing.
-- [ ] Caption renderer.
-- [ ] Highlight styles.
-- [ ] Caption editor.
-- [ ] Safe areas.
+- [x] Caption timing.
+- [x] Caption renderer.
+- [x] Highlight styles.
+- [x] Caption editor.
+- [x] Safe areas.
 - [ ] Brand caption presets.
 - [ ] Re-render.
 
@@ -255,36 +255,36 @@ App must not kill an Ollama instance that existed before app startup.
 
 # Phase 16 — Hook / Cover / Branding
 
-- [ ] Dead-air removal suggestion.
-- [ ] Hook suggestions.
-- [ ] Alternative start suggestions.
-- [ ] Cover frame recommendations.
-- [ ] Manual cover selection.
-- [ ] Logo/watermark.
-- [ ] Brand defaults.
+- [x] Dead-air removal suggestion.
+- [x] Hook suggestions.
+- [x] Alternative start suggestions.
+- [x] Cover frame recommendations.
+- [x] Manual cover selection.
+- [x] Logo/watermark.
+- [x] Brand defaults.
 
 ---
 
 # Phase 17 — Metadata
 
-- [ ] Titles.
-- [ ] Descriptions.
-- [ ] Captions.
-- [ ] Hashtags.
-- [ ] CTAs.
-- [ ] Alternative versions.
-- [ ] Platform-specific variants.
-- [ ] Editable UI.
+- [x] Titles.
+- [x] Descriptions.
+- [x] Captions.
+- [x] Hashtags.
+- [x] CTAs.
+- [x] Alternative versions.
+- [x] Platform-specific variants.
+- [x] Editable UI.
 
 ---
 
 # Phase 18 — Approval Workflow
 
-- [ ] Generated.
-- [ ] Needs Review.
-- [ ] Approved.
-- [ ] Rejected.
-- [ ] Approval persistence.
+- [x] Generated.
+- [x] Needs Review.
+- [x] Approved.
+- [x] Rejected.
+- [x] Approval persistence.
 - [ ] Reapproval behavior after editing.
 - [ ] Local audit history.
 
@@ -292,12 +292,12 @@ App must not kill an Ollama instance that existed before app startup.
 
 # Phase 19 — Social Account Integrations
 
-- [ ] Platform adapter interface.
-- [ ] Secure OAuth credentials.
-- [ ] Account connection UI.
-- [ ] Connection status.
-- [ ] Token refresh.
-- [ ] Re-authentication.
+- [x] Platform adapter interface.
+- [x] Secure OAuth credentials.
+- [x] Account connection UI.
+- [x] Connection status.
+- [x] Token refresh.
+- [x] Re-authentication.
 
 Then implement:
 
@@ -309,14 +309,14 @@ Then implement:
 
 # Phase 20 — Scheduler
 
-- [ ] Local schedule database.
-- [ ] Date/time.
+- [x] Local schedule database.
+- [x] Date/time.
 - [ ] Timezone.
 - [ ] Per-clip schedule.
 - [ ] Per-platform schedule.
 - [ ] Reschedule.
 - [ ] Cancel.
-- [ ] Calendar UI.
+- [x] Calendar UI.
 - [ ] Persistent execution.
 
 ---
@@ -337,35 +337,35 @@ Then implement:
 
 # Phase 22 — Duplicate Detection
 
-- [ ] Clip fingerprint.
-- [ ] Source-segment comparison.
-- [ ] Previously scheduled check.
+- [x] Clip fingerprint.
+- [x] Source-segment comparison.
+- [x] Previously scheduled check.
 - [ ] Previously published check.
-- [ ] Warning.
-- [ ] User override.
+- [x] Warning.
+- [x] User override.
 
 ---
 
 # Phase 23 — Content Series
 
-- [ ] Related clip detection.
-- [ ] Series grouping.
-- [ ] Part numbers.
-- [ ] Reorder.
-- [ ] Rename.
-- [ ] Ungroup.
+- [x] Related clip detection.
+- [x] Series grouping.
+- [x] Part numbers.
+- [x] Reorder.
+- [x] Rename.
+- [x] Ungroup.
 
 ---
 
 # Phase 24 — Local Analytics
 
-- [ ] Analytics provider abstraction.
+- [x] Analytics provider abstraction.
 - [ ] YouTube metrics.
 - [ ] Instagram metrics.
 - [ ] Facebook metrics.
-- [ ] Local snapshots.
-- [ ] Analytics UI.
-- [ ] Refresh/sync.
+- [x] Local snapshots.
+- [x] Analytics UI.
+- [x] Refresh/sync.
 
 ---
 

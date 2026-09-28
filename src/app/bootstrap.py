@@ -28,9 +28,10 @@ def bootstrap_application() -> None:
         config = get_config()
         logger.info(f"Environment: {config.environment}")
         
-        # Make sure app data dir exists
-        app_data_path = Path(config.app_data_dir)
-        app_data_path.mkdir(parents=True, exist_ok=True)
+        logger.info("Initializing local storage database...")
+        from src.storage.database.migrations import MigrationManager
+        MigrationManager().apply_migrations()
+        logger.info("Database migrations applied.")
         
         logger.info("Initialization complete. Core systems ready.")
         

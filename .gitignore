@@ -52,7 +52,7 @@ coverage.xml
 cover/
 
 # Environments
-.env
+.env*
 .venv
 env/
 venv/
@@ -70,3 +70,5 @@ cache/
 .vscode/
 .idea/
 *.swp
+
+/outputs/

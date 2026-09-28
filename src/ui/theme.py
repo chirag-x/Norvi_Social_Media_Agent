@@ -102,6 +102,10 @@ class ThemeManager(QObject):
         QComboBox {{ background-color: {c['bg_tertiary']}; color: {c['text_main']}; border: 1px solid {c['text_muted']}; border-radius: 5px; padding: 5px; }}
         QComboBox:drop-down {{ border: none; }}
         QComboBox QAbstractItemView {{ background-color: {c['bg_secondary']}; color: {c['text_main']}; selection-background-color: {c['bg_tertiary']}; }}
+        
+        QCheckBox {{ color: {c['text_main']}; spacing: 8px; }}
+        QCheckBox::indicator {{ width: 18px; height: 18px; border-radius: 4px; border: 1px solid {c['text_muted']}; background-color: {c['bg_tertiary']}; }}
+        QCheckBox::indicator:checked {{ background-color: {c['primary']}; border: 1px solid {c['primary']}; }}
         """
         app = QApplication.instance()
         if app:

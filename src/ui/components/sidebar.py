@@ -34,8 +34,8 @@ class Sidebar(QWidget):
         layout.addWidget(self.btn_dashboard)
         layout.addWidget(self.btn_discover)
         layout.addWidget(self.btn_clip_lab)
-        layout.addWidget(self.btn_calendar)
         layout.addWidget(self.btn_queue)
+        layout.addWidget(self.btn_calendar)
         layout.addWidget(self.btn_analytics)
         
         layout.addStretch()

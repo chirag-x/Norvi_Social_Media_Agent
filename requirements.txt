@@ -37,3 +37,9 @@ flake8>=6.1.0
 # External Runtime Dependencies:
 # - FFmpeg (needs to be installed on system or bundled)
 # - Ollama (needs to be installed on system)
+
+yt-dlp
+
+imageio-ffmpeg
+
+faster-whisper
