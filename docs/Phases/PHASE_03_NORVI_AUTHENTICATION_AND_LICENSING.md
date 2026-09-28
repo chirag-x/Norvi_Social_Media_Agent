@@ -1,213 +1,42 @@
-# Phase 3 — Norvi Authentication & Licensing Client
+# Phase 3: Norvi Authentication Boundary
 
 ## Status
-
-Not Started
-
----
-
-## Objective
-
-Connect the desktop application to the existing Norvi account/licensing system without expanding the Norvi server into a social-media data backend.
-
----
-
-## Scope
-
-Implement desktop-side:
-
-- Login screen/dialog.
-- Email input.
-- Password input.
-- Activation/API/license key input.
-- Authentication request.
-- Session handling.
-- Access token handling.
-- Logout.
-- Session expiry.
-- License/entitlement state.
-- Offline/auth-server failure states.
-- Secure local session storage.
-
-Do not build or redesign the Norvi backend.
-
----
-
-## Privacy Boundary
-
-Norvi may receive only information necessary for:
-
-- Account authentication.
-- License validation.
-- Activation.
-- Entitlement.
-- Session management.
-
-Norvi must never receive:
-
-- YouTube searches.
-- Social account information.
-- Videos.
-- Clips.
-- Transcripts.
-- AI prompts.
-- AI output.
-- Analytics.
-- Scheduling data.
-- Brand/client data.
-
-This boundary is mandatory.
-
----
-
-## Required Work
-
-Create a dedicated Norvi authentication client.
-
-The UI must never make raw authentication calls directly.
-
-Authentication flow:
-
-App opens
-→ Existing valid session?
-→ Yes: validate/continue
-→ No: show login
-→ Email/password/license authentication
-→ Receive authenticated session/token
-→ Store securely
-→ Enter application
-
-Do not persist plaintext password.
-
----
-
-## Architecture Requirements
-
-Use:
-
-`UI → AuthService → NorviAuthClient`
-
-not:
-
-`UI → random HTTP requests`.
-
-Authentication failures must use normalized errors.
-
-The activation/license backend remains outside the project scope.
-
----
-
-## Files / Modules Involved
-
-Expected:
-
-- `src/services/auth/`
-- `src/integrations/norvi/`
-- `src/storage/credentials/`
-- login UI.
-- settings/account UI.
-- authentication tests.
-
----
-
-## Security Requirements
-
-- HTTPS required for production Norvi communication.
-- Never log password.
-- Never log activation key.
-- Never log full access/refresh tokens.
-- Store authentication tokens using secure OS-backed storage where possible.
-- Password field must be masked.
-- Clear password from UI/state when no longer needed.
-- Session invalidation must be handled correctly.
-
----
-
-## Error Handling Requirements
-
-Handle:
-
-- Wrong email/password.
-- Invalid license.
-- Expired license.
-- Server unreachable.
-- Timeout.
-- Invalid server response.
-- Expired session.
-- Revoked session.
-
-Display useful messages without leaking server internals.
-
----
-
-## Testing Requirements
-
-Use mock/test Norvi responses where real backend testing is unavailable.
-
-Test:
-
-- Valid login.
-- Invalid login.
-- Invalid activation key.
-- Expired session.
-- Server unavailable.
-- Logout.
-- App restart with saved valid session.
-- Secret redaction.
-
----
-
-## Acceptance Criteria
-
-- User can authenticate.
-- Valid session unlocks application.
-- Invalid credentials do not.
-- Password is not persisted.
-- Norvi client sends no social workflow information.
-- Logout removes/revokes local session appropriately.
-- Authentication errors are clear.
-- Previous phases remain working.
-
----
-
-## Real User Validation
-
-Using the real approved Norvi test environment:
-
-1. Open application.
-2. Login.
-3. Verify authorized state.
-4. Restart application.
-5. Verify session behavior.
-6. Logout.
-7. Verify protected app flow requires authentication again.
-
----
-
-## Antigravity Instructions
-
-Do not create new Norvi server endpoints unless the project owner explicitly supplies/approves that work.
-
-Implement only the desktop authentication client boundary.
-
-Do not mix authentication code into unrelated application modules.
-
----
-
-## Completion Report Requirements
-
-Report:
-
-- Authentication flow.
-- Credential storage method.
-- Norvi data fields transmitted.
-- Files changed.
-- Tests.
-- Real validation results if available.
-- Any backend dependency still required.
-
----
-
-## Phase Completion Rule
-
-Authentication must be functional and privacy-bounded before local user-data features begin.
+**Completed**
+
+## Overview
+This phase integrated the authentication boundary into the desktop application. We established a secure Login UI where the user inputs their email, password, and activation key. The client securely extracts a stable Hardware ID (HWID) to adhere to the strict 3-device limit enforced by your agency backend, and manages the resulting session token securely within the OS credential store.
+
+## Accomplishments
+1. **Hardware ID (HWID) Module** (`src/services/auth/hwid.py`):
+   - Created a module to fetch a stable, unique machine identifier.
+   - Primarily queries the `wmic csproduct get uuid` on Windows.
+   - Includes a cross-platform MAC-address fallback (`uuid.getnode()`).
+   - Hashes the resulting string (SHA-256) to ensure a clean, stable token format before sending it to the agency backend.
+2. **Auth Client** (`src/services/auth/client.py`):
+   - Implemented an asynchronous `httpx` client that packages the email, password, activation key, and the `hardware_id` and sends it to the `NORVI_API_URL`.
+   - Includes robust error handling for network timeouts and invalid credentials.
+3. **Secure Session Manager** (`src/services/auth/session.py`):
+   - Utilizes the `keyring` library to securely save, load, and clear the resulting access token in the Windows Credential Manager.
+   - Ensures no passwords or active tokens are ever persisted in plaintext log files or local databases.
+4. **Login UI & Window Integration** (`src/ui/views/login.py`, `src/ui/main_window.py`):
+   - Built the `LoginView` with a professional interface for capturing credentials.
+   - Ensured the UI uses the `BaseWorker` thread to run the authentication without freezing the application.
+   - Modified `MainWindow` to act as an authentication guard: it hides the sidebar and shows the login screen if the user is unauthenticated, automatically bringing them to the Dashboard upon success.
+5. **Logout Flow**:
+   - Added a "Logout" button to the main sidebar.
+   - Emits a signal to cleanly delete the secure token and immediately push the user back to the login screen.
+
+## Action Items Completed
+- [x] Login UI.
+- [x] Email field.
+- [x] Password field.
+- [x] Activation/API key field.
+- [x] Auth client.
+- [x] Session/token handling.
+- [x] Logout.
+- [x] License state.
+- [x] Secure token storage.
+- [x] No plaintext password persistence.
+
+## Next Steps
+Proceeding to **Phase 4: Local Storage and Privacy Foundation**, which will lay the groundwork for managing the local SQLite database where all video metadata and schedules will securely reside.

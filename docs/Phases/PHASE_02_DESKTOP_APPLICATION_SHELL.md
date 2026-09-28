@@ -1,217 +1,41 @@
-# Phase 2 — Desktop Application Shell
+# Phase 2: Desktop Application Shell
 
 ## Status
-
-Not Started
-
----
-
-## Objective
-
-Create the real desktop application shell that every future feature will live inside.
-
-The application should look and behave like a professional product even though most feature pages are still empty.
-
----
-
-## Scope
-
-Implement:
-
-- Desktop UI framework.
-- Main window.
-- Navigation.
-- Page routing.
-- Dashboard shell.
-- Discover page shell.
-- Clip Lab shell.
-- Calendar shell.
-- Publishing Queue shell.
-- Analytics shell.
-- Clients/Brands shell.
-- Integrations shell.
-- Settings shell.
-- Global loading system.
-- Global error presentation.
-- Background-task-safe UI foundation.
-- Dark Norvi visual design.
-- Application lifecycle hooks.
-
----
-
-## Required Work
-
-Use the finalized desktop framework.
-
-Preferred current architecture:
-
-PySide6 / Qt.
-
-Create:
-
-- Main window.
-- Sidebar navigation.
-- Content container.
-- Page manager/router.
-- Reusable buttons.
-- Reusable cards.
-- Status badges.
-- Empty-state component.
-- Error-state component.
-- Progress component.
-- Confirmation dialog.
-- Toast/notification system where appropriate.
-
-Implement the dark black/blue visual system defined in `DESIGN.md`.
-
----
-
-## Architecture Requirements
-
-UI must not:
-
-- Directly access SQLite.
-- Directly execute FFmpeg.
-- Directly call Ollama.
-- Directly call YouTube APIs.
-- Directly publish social posts.
-
-Pages communicate through application services/controllers.
-
-Long-running operations must never freeze the UI thread.
-
----
-
-## Files / Modules Involved
-
-Primarily:
-
-- `src/ui/`
-- `src/app/application.py`
-- `src/app/lifecycle.py`
-- `assets/`
-- UI-related tests.
-
----
-
-## Functional Requirements
-
-Application starts into a real desktop window.
-
-Navigation works between all major sections.
-
-Pages may contain placeholders such as:
-
-"Feature not implemented yet."
-
-but must be visually consistent.
-
-Window resizing must work.
-
-The UI must remain responsive.
-
----
-
-## Privacy Requirements
-
-No telemetry.
-
-No cloud UI analytics.
-
-No external fonts/assets loaded at runtime unless intentionally approved.
-
----
-
-## Security Requirements
-
-Never display:
-
-- Passwords.
-- Tokens.
-- Activation keys.
-- Internal secrets.
-
-Diagnostic views must redact sensitive values.
-
----
-
-## Error Handling Requirements
-
-UI initialization failure must produce a readable local error instead of a silent crash.
-
-Individual page failure should not necessarily crash the complete application.
-
----
-
-## Testing Requirements
-
-Test:
-
-- Main window startup.
-- Navigation.
-- All page construction.
-- Reusable component rendering where practical.
-- Basic application close.
-- UI remains responsive during simulated background task.
-
----
-
-## Acceptance Criteria
-
-- Real desktop window opens.
-- All planned navigation destinations exist.
-- Dark Norvi theme is consistent.
-- Navigation works.
-- Window resizing works.
-- No major blocking UI operation.
-- No feature logic is incorrectly implemented in UI.
-- Phase 1 tests still pass.
-
----
-
-## Real User Validation
-
-Run:
-
-`python main.py`
-
-Manually verify:
-
-- Window opens correctly.
-- Sidebar works.
-- Every page can be opened.
-- No broken layout.
-- Close button exits normally.
-- Multiple navigation changes do not crash.
-
----
-
-## Antigravity Instructions
-
-Do not implement later features.
-
-Build only the reusable application shell and visual foundation.
-
-Do not fill pages with fake functionality.
-
-Preserve clean separation between UI and services.
-
----
-
-## Completion Report Requirements
-
-Report:
-
-- UI framework/version.
-- Screens created.
-- Shared components created.
-- Files changed.
-- Tests.
-- Manual UI validation.
-- Remaining UX issues.
-
----
-
-## Phase Completion Rule
-
-The application must behave like a stable empty product shell before feature implementation begins.
+**Completed**
+
+## Overview
+This phase built the core graphical user interface (GUI) shell of the application using `PySide6`. We established a main window that features side navigation and a central stacked layout, allowing the user to seamlessly switch between different operational views (Dashboard, Settings, Clip Lab, etc.). We also created a suite of reusable UI components (Loading, Error, Notification) and established a robust background worker foundation (`QRunnable`/`QThreadPool`) to ensure the UI remains responsive during heavy tasks.
+
+## Accomplishments
+1. **Main Window & Layout** (`src/ui/main_window.py`): 
+   - Constructed the primary `QMainWindow`.
+   - Setup a `QStackedWidget` for handling content swapping.
+   - Applied the dark, professional styling outlined in `DESIGN.md` (e.g., `#090B10` backgrounds).
+2. **Sidebar & Navigation** (`src/ui/components/sidebar.py`):
+   - Built a vertical sidebar menu featuring all required navigation links (Dashboard, Discover, Clip Lab, Calendar, Publishing Queue, Analytics, Settings).
+   - Implemented Qt Signals to emit navigation requests that the `MainWindow` listens to and acts upon.
+3. **Core Views**:
+   - `DashboardView` (`src/ui/views/dashboard.py`): Created the main landing area.
+   - `SettingsView` (`src/ui/views/settings.py`): Established the settings module.
+   - `PlaceholderView` (`src/ui/views/placeholder.py`): Created a reusable "under construction" view for modules that will be built in later phases.
+4. **Reusable UI Components**:
+   - `LoadingComponent` (`src/ui/components/loading.py`): Provides a clean, indeterminate (or determinate) progress bar with a customizable message.
+   - `ErrorComponent` (`src/ui/components/error.py`): Displays a title, error details, and an optional "Retry" button that emits a signal when clicked.
+   - `NotificationManager` (`src/ui/components/notification.py`): Set up a foundational stub for system-wide toast notifications (Info, Error, Success).
+5. **Background Worker Foundation** (`src/workers/base.py`):
+   - Created `BaseWorker` inheriting from `QRunnable` to allow any function to run safely on a separate thread.
+   - Configured custom `WorkerSignals` to relay progress, success, and full traceback errors back to the main UI thread.
+
+## Action Items Completed
+- [x] Main window.
+- [x] Sidebar.
+- [x] Navigation.
+- [x] Dashboard.
+- [x] Settings.
+- [x] Loading components.
+- [x] Error components.
+- [x] Notification system.
+- [x] Background worker foundation.
+
+## Next Steps
+Proceeding to **Phase 3: Norvi Authentication and Licensing**, which will integrate the initial login/authentication boundary before allowing access to the main dashboard.

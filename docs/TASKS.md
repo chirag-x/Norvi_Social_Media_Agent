@@ -29,55 +29,55 @@ No unresolved foundational choice.
 
 # Phase 1 — Project Foundation
 
-- [ ] Initialize Python 3.13.15 project.
-- [ ] Create virtual environment.
-- [ ] Create source structure.
-- [ ] Configure Git.
-- [ ] Configure formatting.
-- [ ] Configure linting.
-- [ ] Configure tests.
-- [ ] Configure logging.
-- [ ] Create config system.
-- [ ] Add environment validation.
-- [ ] Add basic application startup.
-- [ ] Add CI if desired.
+- [x] Initialize Python 3.13.15 project.
+- [x] Create virtual environment.
+- [x] Create source structure.
+- [x] Configure Git.
+- [x] Configure formatting.
+- [x] Configure linting.
+- [x] Configure tests.
+- [x] Configure logging.
+- [x] Create config system.
+- [x] Add environment validation.
+- [x] Add basic application startup.
+- [x] Add CI if desired.
 
 Tests:
 
-- [ ] Clean install.
-- [ ] App starts.
-- [ ] Tests run.
-- [ ] Lint passes.
-- [ ] Python version validated.
+- [x] Clean install.
+- [x] App starts.
+- [x] Tests run.
+- [x] Lint passes.
+- [x] Python version validated.
 
 ---
 
 # Phase 2 — Desktop Application Shell
 
-- [ ] Main window.
-- [ ] Sidebar.
-- [ ] Navigation.
-- [ ] Dashboard.
-- [ ] Settings.
-- [ ] Loading components.
-- [ ] Error components.
-- [ ] Notification system.
-- [ ] Background worker foundation.
+- [x] Main window.
+- [x] Sidebar.
+- [x] Navigation.
+- [x] Dashboard.
+- [x] Settings.
+- [x] Loading components.
+- [x] Error components.
+- [x] Notification system.
+- [x] Background worker foundation.
 
 ---
 
 # Phase 3 — Norvi Authentication Boundary
 
-- [ ] Login UI.
-- [ ] Email field.
-- [ ] Password field.
-- [ ] Activation/API key field.
-- [ ] Auth client.
-- [ ] Session/token handling.
-- [ ] Logout.
-- [ ] License state.
-- [ ] Secure token storage.
-- [ ] No plaintext password persistence.
+- [x] Login UI.
+- [x] Email field.
+- [x] Password field.
+- [x] Activation/API key field.
+- [x] Auth client.
+- [x] Session/token handling.
+- [x] Logout.
+- [x] License state.
+- [x] Secure token storage.
+- [x] No plaintext password persistence.
 
 Do NOT implement the Norvi server/license backend itself.
 

@@ -1,5 +1,5 @@
 # Norvi Social Media Agent
-
+admin@agency.com
 ## Overview
 
 **Norvi Social Media Agent** is an intelligent social-media automation platform designed to turn long-form video content into ready-to-publish short-form content with significantly less manual work.

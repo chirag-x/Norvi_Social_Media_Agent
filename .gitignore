@@ -1,85 +1,72 @@
-# Python
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+
+# C extensions
 *.so
+
+# Distribution / packaging
 .Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
 
-# Virtual environments
-.venv/
-venv/
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Environments
+.env
+.venv
 env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
-# Environment secrets
-.env*
-.env.local
+# Project specific
+app_data/
+logs/
+temp/
+cache/
 
-# IDE
+# IDEs
 .vscode/
 .idea/
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Pytest
-.pytest_cache/
-.coverage
-htmlcov/
-
-# Type checking
-.mypy_cache/
-.pyright/
-
-# folders
-/tests/
-/scripts/
-
-# Build
-build/
-dist/
-*.egg-info/
-
-# Runtime user data
-/runtime/
-runtime/database/*
-runtime/projects/*
-runtime/sources/*
-runtime/proxies/*
-runtime/clips/*
-runtime/captions/*
-runtime/covers/*
-runtime/analytics/*
-runtime/cache/*
-runtime/temp/*
-runtime/logs/*
-# Keep runtime folders
-!runtime/database/.gitkeep
-!runtime/projects/.gitkeep
-!runtime/sources/.gitkeep
-!runtime/proxies/.gitkeep
-!runtime/clips/.gitkeep
-!runtime/captions/.gitkeep
-!runtime/covers/.gitkeep
-!runtime/analytics/.gitkeep
-!runtime/cache/.gitkeep
-!runtime/temp/.gitkeep
-!runtime/logs/.gitkeep
-
-# Local databases
-*.db
-*.sqlite
-*.sqlite3
-
-# Media output
-*.mp4
-*.mov
-*.mkv
-*.avi
-*.webm
-*.wav
-*.mp3
-*.aac
-
-# Logs
-*.log
+*.swp
