@@ -86,7 +86,7 @@ Keep scoring version/config identifiable so future algorithm changes can be trac
 
 Scores remain local.
 
-No candidate or score sent to Norvi.
+No candidate or score sent to Nexus.
 
 ---
 

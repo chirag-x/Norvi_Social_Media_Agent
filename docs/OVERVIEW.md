@@ -1,8 +1,8 @@
-# Norvi Social Media Agent
+# Nexus
 
 ## Overview
 
-Norvi Social Media Agent is a local-first AI-powered desktop application for discovering content, generating short-form clips, scheduling posts, publishing to social platforms, and learning from performance.
+Nexus is a local-first AI-powered desktop application for discovering content, generating short-form clips, scheduling posts, publishing to social platforms, and learning from performance.
 
 The application is designed for agencies, creators, and social-media managers.
 
@@ -119,7 +119,7 @@ Analytics stay local.
 
 The application is privacy-first.
 
-Norvi does NOT receive:
+Nexus does NOT receive:
 
 - Your videos.
 - Your generated clips.
@@ -133,7 +133,7 @@ Norvi does NOT receive:
 
 Social-media workflow data remains on the user's computer.
 
-Norvi server communication is restricted to account authentication/licensing functionality.
+Nexus server communication is restricted to account authentication/licensing functionality.
 
 ---
 
@@ -184,7 +184,7 @@ Typical first run:
 
 Launch app
 ↓
-Login using Norvi account/license
+Login using Nexus account/license
 ↓
 Check local AI runtime
 ↓
@@ -227,7 +227,7 @@ Local deterministic video-processing stack.
 Internet is required for:
 
 - Initial software/model downloads.
-- Norvi authentication.
+- Nexus authentication.
 - YouTube discovery.
 - Social platform OAuth.
 - Publishing.
@@ -370,7 +370,7 @@ Update documentation.
 # Product Safety Rules
 
 - Never publish without required approval.
-- Never upload user content to Norvi.
+- Never upload user content to Nexus.
 - Never expose tokens.
 - Never treat public content as automatically reusable.
 - Never guarantee virality.

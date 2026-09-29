@@ -1,4 +1,4 @@
--- Initial schema setup for Norvi Social Media Agent
+-- Initial schema setup for Nexus
 
 CREATE TABLE IF NOT EXISTS user_profiles (
     id TEXT PRIMARY KEY,

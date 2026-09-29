@@ -1,4 +1,4 @@
-# Norvi Social Media Agent — Development Phases
+# Nexus — Development Phases
 
 This folder contains the complete phase-by-phase development plan.
 
@@ -8,7 +8,7 @@ Development must proceed sequentially unless a documented architectural decision
 
 1. [Project Foundation](PHASE_01_PROJECT_FOUNDATION.md)
 2. [Desktop Application Shell](PHASE_02_DESKTOP_APPLICATION_SHELL.md)
-3. [Norvi Authentication & Licensing Client](PHASE_03_NORVI_AUTHENTICATION_AND_LICENSING.md)
+3. [Nexus Authentication & Licensing Client](PHASE_03_NORVI_AUTHENTICATION_AND_LICENSING.md)
 4. [Local Storage & Privacy Foundation](PHASE_04_LOCAL_STORAGE_AND_PRIVACY_FOUNDATION.md)
 5. [Ollama Runtime Management](PHASE_05_OLLAMA_RUNTIME_MANAGEMENT.md)
 6. [Gemma Model Management & AI Gateway](PHASE_06_GEMMA_MODEL_AND_AI_GATEWAY.md)

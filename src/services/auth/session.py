@@ -2,7 +2,7 @@ import keyring
 from typing import Optional
 from src.utils.logger import logger
 
-SERVICE_NAME = "norvi_social_media_agent"
+SERVICE_NAME = "nexus_social_media_agent"
 TOKEN_KEY = "access_token"
 
 class SessionManager:

@@ -98,13 +98,13 @@ Generated versions must use unique IDs/version IDs.
 
 This entire storage layer is local.
 
-No database synchronization to Norvi.
+No database synchronization to Nexus.
 
 No client profile upload.
 
 No analytics upload.
 
-No background backup to Norvi.
+No background backup to Nexus.
 
 ---
 
@@ -158,7 +158,7 @@ Test:
 - Local DB initializes correctly.
 - Application data persists across restart.
 - Clients stay separated.
-- No private local data sent to Norvi.
+- No private local data sent to Nexus.
 - UI does not directly access DB.
 - Migration mechanism exists.
 - Secure credential boundary exists.

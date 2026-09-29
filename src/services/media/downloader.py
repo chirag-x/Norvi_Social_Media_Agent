@@ -27,7 +27,7 @@ class MediaProcessor:
         """
         safe_title = self._sanitize_filename(title)
         video_out = self.cache_dir / f"{safe_title}.mp4"
-        audio_out = self.cache_dir / f"{safe_title}.wav"
+        audio_out = self.cache_dir / f"{safe_title}.mp3"
         
         # If already cached
         if video_out.exists() and audio_out.exists():
@@ -96,14 +96,14 @@ class MediaProcessor:
             ydl.download([url])
 
     async def _extract_audio(self, video_path: str, audio_path: str):
-        """Extracts 16kHz mono WAV suitable for transcription."""
+        """Extracts 64kbps mono MP3 suitable for transcription."""
         cmd = [
             self.ffmpeg_path,
             "-y", # Overwrite
             "-i", video_path,
             "-vn", # No video
-            "-acodec", "pcm_s16le",
-            "-ar", "16000",
+            "-acodec", "libmp3lame",
+            "-ab", "64k",
             "-ac", "1",
             audio_path
         ]

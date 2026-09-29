@@ -129,7 +129,7 @@ Performance history remains local.
 
 Learning remains local.
 
-Norvi gets none of it.
+Nexus gets none of it.
 
 ---
 
@@ -187,7 +187,7 @@ Generate local recommendations.
 
 ## Antigravity Instructions
 
-Do not add Norvi cloud analytics.
+Do not add Nexus cloud analytics.
 
 This feature must preserve the product's local-first privacy promise.
 

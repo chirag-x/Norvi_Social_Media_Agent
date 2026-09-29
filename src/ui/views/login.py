@@ -23,17 +23,26 @@ class LoginView(QWidget):
 
     def setup_ui(self):
         main_layout = QVBoxLayout(self)
-        main_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        
+        main_layout.addStretch()
         
         # Login Container
+        # Wrap it in a QHBoxLayout to center it horizontally as well
+        h_layout = QHBoxLayout()
+        h_layout.addStretch()
+        
         container = QFrame()
         container.setFixedWidth(400)
         container.setObjectName("login_container")
+        h_layout.addWidget(container)
+        h_layout.addStretch()
+        
+        main_layout.addLayout(h_layout)
         
         layout = QVBoxLayout(container)
         
         # Title
-        title = QLabel("Norvi Agent Login")
+        title = QLabel("Nexus Login")
         title.setProperty("class", "title")
         title.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(title)
@@ -68,7 +77,7 @@ class LoginView(QWidget):
         self.login_btn.clicked.connect(self.on_login_clicked)
         layout.addWidget(self.login_btn)
         
-        main_layout.addWidget(container)
+        main_layout.addStretch()
 
     def on_login_clicked(self):
         email = self.email_input.text().strip()
@@ -99,6 +108,7 @@ class LoginView(QWidget):
             if SessionManager.save_token(token):
                 # Ensure local DB knows about this user
                 from src.storage.daos.user_dao import UserDAO
+                email = self.email_input.text().strip()
                 UserDAO().create_or_update(email)
                 
                 self.login_successful.emit()

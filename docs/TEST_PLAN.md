@@ -132,9 +132,9 @@ App must not kill it.
 
 Monitor outgoing network traffic.
 
-Confirm user content is never sent to Norvi.
+Confirm user content is never sent to Nexus.
 
-Verify Norvi requests contain only required account/license/session information.
+Verify Nexus requests contain only required account/license/session information.
 
 Test that:
 
@@ -142,8 +142,8 @@ Test that:
 - video does not leave.
 - clip does not leave.
 - analytics do not leave.
-- search history does not leave to Norvi.
-- prompt does not leave to Norvi.
+- search history does not leave to Nexus.
+- prompt does not leave to Nexus.
 
 ---
 

@@ -77,7 +77,7 @@ Brand profile is applied as configuration, not hardcoded per client.
 
 ## Privacy Requirements
 
-No brand/client information goes to Norvi.
+No brand/client information goes to Nexus.
 
 ---
 

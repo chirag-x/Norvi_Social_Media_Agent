@@ -22,7 +22,7 @@ def bootstrap_application() -> None:
     from PySide6.QtWidgets import QApplication
     from src.ui.main_window import MainWindow
 
-    logger.info("Starting Norvi Social Media Agent...")
+    logger.info("Starting Nexus...")
     
     try:
         config = get_config()
@@ -33,14 +33,20 @@ def bootstrap_application() -> None:
         MigrationManager().apply_migrations()
         logger.info("Database migrations applied.")
         
+        from src.services.system.cleanup import run_auto_cleanup
+        run_auto_cleanup(days=15)
+        
         logger.info("Initialization complete. Core systems ready.")
         
         app = QApplication(sys.argv)
         
         from src.ui.theme import ThemeManager
-        ThemeManager.get_instance().apply_theme()
+        theme_mgr = ThemeManager.get_instance()
+        theme_mgr.apply_theme()
         
         window = MainWindow()
+        # Re-colour the native title bar whenever the user switches theme
+        theme_mgr.theme_changed.connect(lambda _: window.on_theme_changed())
         window.show()
         sys.exit(app.exec())
         

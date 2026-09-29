@@ -2,7 +2,7 @@
 
 ## Product
 
-Working Name: Norvi Social Media Agent
+Working Name: Nexus
 
 Product Type:
 Local-first AI social media automation desktop application.
@@ -53,7 +53,7 @@ The product must follow these principles:
 2. Private by design.
 3. Zero mandatory paid AI APIs.
 4. Zero mandatory paid cloud services.
-5. User content never passes through Norvi infrastructure.
+5. User content never passes through Nexus infrastructure.
 6. AI runs locally through Ollama.
 7. Video processing happens locally.
 8. Analytics remain locally stored.
@@ -142,7 +142,7 @@ The user should be able to open one desktop application and:
 
 User launches app
 ↓
-Authenticate with Norvi account/license
+Authenticate with Nexus account/license
 ↓
 Local AI environment checked
 ↓
@@ -322,7 +322,7 @@ Public availability on YouTube must never automatically be treated as permission
 
 The application records this confirmation locally.
 
-Norvi must not receive this data.
+Nexus must not receive this data.
 
 ---
 
@@ -650,7 +650,7 @@ Where supported by each platform, the app may collect:
 
 All analytics remain on the user's computer.
 
-Norvi receives none of these analytics.
+Nexus receives none of these analytics.
 
 ---
 
@@ -748,7 +748,7 @@ The user can:
 
 This is a non-negotiable product requirement.
 
-Norvi must NOT collect:
+Nexus must NOT collect:
 
 - YouTube searches.
 - Source video history.
@@ -774,18 +774,18 @@ All these stay locally on the user's computer.
 
 ---
 
-# 37. Norvi Server Boundary
+# 37. Nexus Server Boundary
 
-The Norvi server is used only for account/license authentication.
+The Nexus server is used only for account/license authentication.
 
 Permitted information includes:
 
 - User account email.
-- Authentication information required by existing Norvi website.
+- Authentication information required by existing Nexus website.
 - License/API/activation key.
 - Entitlement/activation status.
 
-The app must not send social-media workflow data to Norvi.
+The app must not send social-media workflow data to Nexus.
 
 Passwords must never be stored in plaintext.
 
@@ -910,7 +910,7 @@ Deterministic responsibilities:
 MVP should prove the full workflow:
 
 - Desktop application.
-- Norvi authentication boundary.
+- Nexus authentication boundary.
 - Local database.
 - Ollama manager.
 - Gemma model manager.
@@ -959,10 +959,10 @@ After MVP:
 
 Not part of the initial implementation:
 
-- Cloud storage of user social data by Norvi.
+- Cloud storage of user social data by Nexus.
 - Paid AI services.
-- Centralized Norvi analytics collection.
-- Training Norvi models using user content.
+- Centralized Nexus analytics collection.
+- Training Nexus models using user content.
 - Selling user activity data.
 - Native mobile app.
 - Guaranteed virality.
@@ -989,4 +989,4 @@ The product is successful when a user can:
 12. Publish them.
 13. Verify publishing.
 14. View local analytics.
-15. Do all social workflow processing without sending their content to Norvi.
+15. Do all social workflow processing without sending their content to Nexus.

@@ -15,7 +15,9 @@ class Sidebar(QWidget):
         self.setObjectName("sidebar")
         
         layout = QVBoxLayout()
-        layout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        
+        from PySide6.QtWidgets import QSizePolicy
+        self.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Expanding)
         
         # Logo or Title
         title = QLabel("Norvi Agent")
@@ -39,6 +41,9 @@ class Sidebar(QWidget):
         layout.addWidget(self.btn_analytics)
         
         layout.addStretch()
+        
+        self.btn_help = self._create_nav_button("Help Center", "help")
+        layout.addWidget(self.btn_help)
         
         self.btn_settings = self._create_nav_button("Settings", "settings")
         layout.addWidget(self.btn_settings)

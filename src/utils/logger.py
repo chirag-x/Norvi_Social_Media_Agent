@@ -5,7 +5,7 @@ from pathlib import Path
 from src.config.config import get_config
 
 
-def setup_logger(name: str = "norvi") -> logging.Logger:
+def setup_logger(name: str = "nexus") -> logging.Logger:
     """
     Configures and returns a logger instance based on the application configuration.
     """

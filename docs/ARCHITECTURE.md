@@ -16,7 +16,7 @@ Local Ollama + Gemma 4 31B-class model.
 User content:
 Processed and stored locally.
 
-Norvi cloud responsibility:
+Nexus cloud responsibility:
 Authentication/licensing only.
 
 ---
@@ -29,7 +29,7 @@ Desktop Application
 │
 ├── Authentication Client
 │      ↓
-│   Norvi Auth/License Server
+│   Nexus Auth/License Server
 │
 ├── Local AI Runtime Manager
 │      ↓
@@ -68,7 +68,7 @@ Desktop Application
 │
 └── Local Database / Files
 
-Norvi must not sit between the app and the user's social-media platforms.
+Nexus must not sit between the app and the user's social-media platforms.
 
 ---
 
@@ -318,7 +318,7 @@ Requirements:
 - Local execution.
 - Timestamp support.
 - No paid API requirement.
-- No transcript upload to Norvi.
+- No transcript upload to Nexus.
 
 ---
 
@@ -419,11 +419,11 @@ Never store:
 
 ---
 
-# 15. Norvi Authentication Boundary
+# 15. Nexus Authentication Boundary
 
 Desktop App
 ↓
-Norvi Authentication Endpoint
+Nexus Authentication Endpoint
 ↓
 Account / License Validation
 ↓
@@ -675,14 +675,14 @@ All processing stays local.
 
 Network communication should occur only when required for:
 
-1. Norvi account/license authentication.
+1. Nexus account/license authentication.
 2. YouTube discovery/source access.
 3. Social account OAuth/API operations.
 4. Publishing.
 5. Analytics retrieval.
 6. Required application/model downloads.
 
-User content must never be automatically uploaded to Norvi.
+User content must never be automatically uploaded to Nexus.
 
 No default telemetry.
 
@@ -752,7 +752,7 @@ social-media-agent/
 3. Ollama lifecycle goes through OllamaRuntimeManager.
 4. FFmpeg commands go through MediaEngine.
 5. Social platforms use adapters.
-6. Local content never goes to Norvi.
+6. Local content never goes to Nexus.
 7. Long tasks run outside UI thread.
 8. No plaintext secrets.
 9. Publishing must be idempotent.

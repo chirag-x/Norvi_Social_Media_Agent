@@ -72,3 +72,5 @@ cache/
 *.swp
 
 /outputs/
+/tests/
+/scripts/

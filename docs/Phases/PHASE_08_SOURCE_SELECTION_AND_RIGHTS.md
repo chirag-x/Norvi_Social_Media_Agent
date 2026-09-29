@@ -69,7 +69,7 @@ The rights confirmation must be stored locally with:
 - Confirmation timestamp.
 - Local user/account reference where applicable.
 
-Do not send confirmation details to Norvi.
+Do not send confirmation details to Nexus.
 
 ---
 

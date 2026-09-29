@@ -14,7 +14,7 @@ This phase built the underlying architecture to strictly manage the local AI eng
 2. **Process Ownership & Safe Shutdown**:
    - The app strictly tracks whether *it* started the Ollama process, or if the user already had it running in the background.
    - If the app starts Ollama, it uses `subprocess.Popen` with `CREATE_NO_WINDOW` so no ugly terminal pops up on the user's screen.
-   - Integrated into `MainWindow.closeEvent()`: When the user closes the Norvi app, it cleanly kills the Ollama process *only* if the app was the one to start it.
+   - Integrated into `MainWindow.closeEvent()`: When the user closes the Nexus app, it cleanly kills the Ollama process *only* if the app was the one to start it.
 3. **UI Integration**:
    - Added a live "System Status" indicator to the Dashboard.
    - When the user logs in, the dashboard spins up a background worker to silently boot/verify Ollama.

@@ -4,11 +4,11 @@
 **Completed**
 
 ## Overview
-This phase finalizes the core technology stack required to build the Norvi Social Media Agent. By definitively selecting these libraries and frameworks, we ensure that the architecture described in `ARCHITECTURE.md` can be implemented successfully, meeting all privacy, cost, and local-first requirements.
+This phase finalizes the core technology stack required to build the Nexus. By definitively selecting these libraries and frameworks, we ensure that the architecture described in `ARCHITECTURE.md` can be implemented successfully, meeting all privacy, cost, and local-first requirements.
 
 ## Technology Decisions
 
-1. **Application Name**: Norvi Social Media Agent (Confirmed)
+1. **Application Name**: Nexus (Confirmed)
 2. **Desktop UI Framework**: PySide6 (Qt for Python). It is a robust, professional-grade framework suited for complex desktop applications.
 3. **Local Database**: SQLite. It's embedded, serverless, and perfect for a local-first application to store client, scheduling, and analytics data.
 4. **Local Transcription Engine**: `faster-whisper`. It provides excellent performance and accuracy for local speech-to-text without relying on cloud APIs.

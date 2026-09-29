@@ -31,24 +31,58 @@ class VideoRenderer:
         
         duration = end_time - start_time
         
-        cmd = [
-            self.ffmpeg_path,
-            "-y",
+        from src.storage.database.database import DatabaseManager
+        db = DatabaseManager.get_instance()
+        
+        # Phase 28: Hardware / Thread Limits
+        ffmpeg_threads = db.get_setting("ffmpeg_threads", "Auto")
+        ffmpeg_hwaccel = db.get_setting("ffmpeg_hwaccel", "None (CPU)")
+        
+        cmd = [self.ffmpeg_path, "-y"]
+        
+        # Apply hardware acceleration decoder if selected
+        if ffmpeg_hwaccel == "NVIDIA (NVENC)":
+            cmd.extend(["-hwaccel", "cuda"])
+        elif ffmpeg_hwaccel == "AMD (AMF)":
+            cmd.extend(["-hwaccel", "d3d11va"])
+        elif ffmpeg_hwaccel == "Intel (QSV)":
+            cmd.extend(["-hwaccel", "qsv"])
+            
+        cmd.extend([
             "-ss", str(start_time),
             "-i", source_video,
             "-t", str(duration)
-        ]
+        ])
         
         # Build video filters
         if crop_vertical:
+            encoder = "libx264"
+            
+            # Apply hardware encoder if selected
+            if ffmpeg_hwaccel == "NVIDIA (NVENC)":
+                encoder = "h264_nvenc"
+            elif ffmpeg_hwaccel == "AMD (AMF)":
+                encoder = "h264_amf"
+            elif ffmpeg_hwaccel == "Intel (QSV)":
+                encoder = "h264_qsv"
+                
             cmd.extend([
                 "-vf", "crop=ih*(9/16):ih",
-                "-c:v", "libx264",
+                "-c:v", encoder,
                 "-preset", "veryfast",
-                "-crf", "23",
                 "-c:a", "aac",
                 "-b:a", "128k"
             ])
+            # -crf is mainly for libx264, nvenc uses -cq
+            if encoder == "libx264":
+                cmd.extend(["-crf", "23"])
+            elif encoder == "h264_nvenc":
+                cmd.extend(["-cq", "23"])
+                
+            # Apply Thread Limits (only if not Auto)
+            if ffmpeg_threads != "Auto":
+                cmd.extend(["-threads", str(ffmpeg_threads)])
+
         else:
             # Instant stream copy if no filters are applied
             cmd.extend([

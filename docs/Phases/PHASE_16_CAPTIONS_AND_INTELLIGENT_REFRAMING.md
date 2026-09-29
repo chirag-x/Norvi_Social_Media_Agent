@@ -76,7 +76,7 @@ Do not embed everything in one FFmpeg function.
 
 Vision/tracking is local.
 
-No frame upload to Norvi.
+No frame upload to Nexus.
 
 ---
 

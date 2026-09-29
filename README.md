@@ -1,14 +1,14 @@
-# Norvi Social Media Agent
+# Nexus
 admin@agency.com
 ## Overview
 
-**Norvi Social Media Agent** is an intelligent social-media automation platform designed to turn long-form video content into ready-to-publish short-form content with significantly less manual work.
+**Nexus** is an intelligent social-media automation platform designed to turn long-form video content into ready-to-publish short-form content with significantly less manual work.
 
 It brings the complete content workflow into one place:
 
 **Discover → Analyze → Create → Review → Schedule → Publish → Measure → Improve**
 
-Instead of using separate tools to find content, watch long videos, identify good moments, edit clips, add captions, write titles, prepare posts, schedule uploads, and track performance, Norvi Social Media Agent handles the complete workflow through a single experience.
+Instead of using separate tools to find content, watch long videos, identify good moments, edit clips, add captions, write titles, prepare posts, schedule uploads, and track performance, Nexus handles the complete workflow through a single experience.
 
 The user always remains in control of what gets created and what gets published.
 
@@ -37,7 +37,7 @@ A typical social-media workflow may involve:
 - Monitoring performance.
 - Trying to understand what type of content works best.
 
-Norvi Social Media Agent simplifies this entire process.
+Nexus simplifies this entire process.
 
 Instead of doing each step manually, the user can manage the workflow from one application.
 
@@ -104,7 +104,7 @@ This gives the user flexibility to create:
 
 # 3. Understand the Entire Video
 
-Norvi Social Media Agent does not simply divide a long video into random pieces.
+Nexus does not simply divide a long video into random pieces.
 
 It understands the complete content first.
 
@@ -210,7 +210,7 @@ The goal is to turn a moment from a long video into something that feels natural
 
 # 8. Automatic Captions
 
-Norvi Social Media Agent can automatically create subtitles for generated clips.
+Nexus can automatically create subtitles for generated clips.
 
 Captions can be customized and corrected by the user.
 
@@ -293,7 +293,7 @@ This reduces the need to manually search through the video for a good cover imag
 
 # 12. Automatic Titles, Captions and Hashtags
 
-For every approved clip, Norvi Social Media Agent can prepare the written content needed for publishing.
+For every approved clip, Nexus can prepare the written content needed for publishing.
 
 This includes:
 
@@ -527,7 +527,7 @@ The user can see which content is performing well without manually checking ever
 
 # 22. The Agent Learns What Works for You
 
-One of the most important features of Norvi Social Media Agent is that recommendations can improve using the user's own historical performance.
+One of the most important features of Nexus is that recommendations can improve using the user's own historical performance.
 
 For example, it may discover that:
 
@@ -545,11 +545,11 @@ This creates a more personalized experience instead of giving every user the sam
 
 # 23. Privacy by Design
 
-Privacy is one of the core principles of Norvi Social Media Agent.
+Privacy is one of the core principles of Nexus.
 
 The user's social-media workflow is private.
 
-Norvi does not receive the user's:
+Nexus does not receive the user's:
 
 - Videos.
 - Generated clips.
@@ -570,13 +570,13 @@ This information remains on the user's own computer.
 
 ---
 
-# 24. What Norvi Receives
+# 24. What Nexus Receives
 
-Norvi only handles the information necessary to authenticate access to the application.
+Nexus only handles the information necessary to authenticate access to the application.
 
 This includes information related to:
 
-- The user's Norvi account.
+- The user's Nexus account.
 - Login authentication.
 - Product activation.
 - License/API key validation.
@@ -590,7 +590,7 @@ The user's actual social-media work remains private.
 
 The intelligence behind the application runs directly on the user's own computer.
 
-This means video understanding, content analysis, clip recommendations, titles, captions and other AI-powered features do not require the user's content to be sent to Norvi for processing.
+This means video understanding, content analysis, clip recommendations, titles, captions and other AI-powered features do not require the user's content to be sent to Nexus for processing.
 
 This provides:
 
@@ -604,7 +604,7 @@ This provides:
 
 # 26. No Mandatory Paid AI Service
 
-Norvi Social Media Agent is designed so that users are not forced to purchase separate AI credits simply to use its intelligence.
+Nexus is designed so that users are not forced to purchase separate AI credits simply to use its intelligence.
 
 There is no requirement for:
 
@@ -620,7 +620,7 @@ The goal is to keep the core workflow usable without recurring AI API charges.
 
 # 27. Built for Automation Without Removing User Control
 
-Norvi Social Media Agent automates repetitive work, but it does not take important decisions away from the user.
+Nexus automates repetitive work, but it does not take important decisions away from the user.
 
 The system can:
 
@@ -649,7 +649,7 @@ This balance makes the product useful for both automation and professional agenc
 
 Imagine a social-media manager wants to create short-form gaming content.
 
-They open Norvi Social Media Agent.
+They open Nexus.
 
 They choose:
 
@@ -703,7 +703,7 @@ What previously required multiple tools and hours of repetitive work can now be 
 
 # 29. Who Is It For?
 
-Norvi Social Media Agent is useful for:
+Nexus is useful for:
 
 ## Social Media Agencies
 
@@ -735,7 +735,7 @@ Plan, prepare, schedule and monitor content from one place.
 
 ---
 
-# 30. What Makes Norvi Social Media Agent Different?
+# 30. What Makes Nexus Different?
 
 It is not just:
 
@@ -753,7 +753,7 @@ It is not just:
 
 An AI chatbot.
 
-Norvi Social Media Agent combines the complete short-form content workflow.
+Nexus combines the complete short-form content workflow.
 
 It discovers opportunities.
 
@@ -781,7 +781,7 @@ And it does this while keeping the user's content private.
 
 # 31. The Complete Experience
 
-The simplest way to describe Norvi Social Media Agent is:
+The simplest way to describe Nexus is:
 
 > **Turn long-form content into high-potential short-form social content, prepare it for multiple platforms, schedule it, publish it, measure it, and use those results to make the next content better — all from one privacy-first application.**
 
@@ -789,7 +789,7 @@ The simplest way to describe Norvi Social Media Agent is:
 
 # 32. Product Philosophy
 
-Norvi Social Media Agent is built around four principles:
+Nexus is built around four principles:
 
 ### Automation
 
@@ -811,7 +811,7 @@ Keep the user's content and social-media activity private to their own device.
 
 # 33. Final Summary
 
-Norvi Social Media Agent acts like an intelligent social-media content assistant.
+Nexus acts like an intelligent social-media content assistant.
 
 It helps users move from:
 

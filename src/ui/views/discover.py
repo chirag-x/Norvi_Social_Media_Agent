@@ -17,7 +17,7 @@ class VideoItemWidget(QFrame):
         super().__init__()
         self.video = video
         self.setProperty("class", "video_item")
-        self.setStyleSheet("QFrame { background-color: transparent; border-bottom: 1px solid #333; padding: 15px 10px; margin-bottom: 5px; }")
+        self.setStyleSheet("QFrame { background-color: transparent; padding: 15px 10px; margin-bottom: 5px; }")
         
         layout = QHBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
@@ -26,7 +26,7 @@ class VideoItemWidget(QFrame):
         # Thumbnail
         self.thumb_label = QLabel()
         self.thumb_label.setFixedSize(160, 90)
-        self.thumb_label.setStyleSheet("background-color: #222; border-radius: 8px;")
+        self.thumb_label.setStyleSheet("border-radius: 8px;")
         self.thumb_label.setScaledContents(True)
         layout.addWidget(self.thumb_label)
         
@@ -35,13 +35,13 @@ class VideoItemWidget(QFrame):
         details_layout.setSpacing(5)
         
         title = QLabel(video.title)
-        title.setStyleSheet("font-size: 16px; font-weight: bold; color: #FFFFFF;")
+        title.setStyleSheet("font-size: 16px; font-weight: bold;")
         title.setWordWrap(True)
         details_layout.addWidget(title)
         
         views_formatted = f"{video.views:,}" if isinstance(video.views, int) else video.views
         meta = QLabel(f"{video.channel}  •  {views_formatted} views  •  Duration: {video.duration}")
-        meta.setStyleSheet("color: #A0AABF; font-size: 13px;")
+        meta.setProperty("class", "subtitle")
         details_layout.addWidget(meta)
         
         btn_layout = QHBoxLayout()
@@ -53,7 +53,7 @@ class VideoItemWidget(QFrame):
         
         select_btn = QPushButton("Select Source")
         select_btn.setCursor(Qt.CursorShape.PointingHandCursor)
-        select_btn.setStyleSheet("background-color: #3578FF; color: white; border-radius: 4px; padding: 6px 15px; font-weight: bold;")
+        select_btn.setStyleSheet("background-color: #3B82F6; color: white; border-radius: 4px; padding: 6px 15px; font-weight: bold;")
         select_btn.clicked.connect(self._select_source)
         btn_layout.addWidget(select_btn)
         btn_layout.addStretch()
@@ -107,7 +107,6 @@ class DiscoverView(QWidget):
         self.youtube = YouTubeProvider()
         
         main_layout = QVBoxLayout(self)
-        main_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         
         # Header
         title = QLabel("Content Discovery")
@@ -138,7 +137,7 @@ class DiscoverView(QWidget):
         search_layout.addWidget(self.duration_combo)
         
         self.search_input = QLineEdit()
-        self.search_input.setPlaceholderText("Search for trending topics, keywords, or competitors...")
+        self.search_input.setPlaceholderText("Search topics, keywords, or paste a YouTube URL...")
         self.search_input.setMinimumHeight(40)
         self.search_input.returnPressed.connect(self.perform_search)
         search_layout.addWidget(self.search_input)
@@ -166,22 +165,22 @@ class DiscoverView(QWidget):
         query = self.search_input.text().strip()
         niche = self.niche_combo.currentText()
         
-        if not query:
-            if niche == "General":
-                query = "viral trending today"
-            else:
-                query = f"trending {niche.lower()} today"
-            
-        country = self.country_combo.currentText()
-        if country != "Global":
-            query = f"{query} in {country}"
-            
-        # Add strong keywords to force YouTube's algorithm to give us viral content
-        query = f"{query} most viewed viral"
+        is_url = query.startswith("http://") or query.startswith("https://")
         
-        duration_filter = self.duration_combo.currentText()
-        if duration_filter == "0 - 3 mins":
-            query = f"{query} #shorts"
+        if not is_url:
+            if not query:
+                if niche == "General":
+                    query = "viral trending"
+                else:
+                    query = f"top trending {niche.lower()}"
+                
+            country = self.country_combo.currentText()
+            if country != "Global":
+                query = f"{query} in {country}"
+                
+            duration_filter = self.duration_combo.currentText()
+            if duration_filter == "0 - 3 mins":
+                query = f"{query} #shorts"
             
         self.results_list.clear()
         self.search_btn.setEnabled(False)
@@ -196,8 +195,14 @@ class DiscoverView(QWidget):
         self.thread_pool.start(worker)
 
     def _async_search(self, query: str, niche: str, duration_filter: str) -> list:
-        # Fetch 25 results to ensure we have enough left over after duration filtering
-        return asyncio.run(self.youtube.search(query, niche, duration_filter=duration_filter, max_results=25))
+        # If the user pasted a direct YouTube link, bypass the complex discovery algorithm
+        if query.startswith("http://") or query.startswith("https://"):
+            import asyncio
+            return asyncio.run(self.youtube.get_by_url(query))
+            
+        # Fetch 200 results to cast a massive net before strictly filtering down to the Top 5
+        import asyncio
+        return asyncio.run(self.youtube.search(query, niche, duration_filter=duration_filter, max_results=200))
 
     def _on_search_results(self, videos: list):
         self.search_btn.setEnabled(True)

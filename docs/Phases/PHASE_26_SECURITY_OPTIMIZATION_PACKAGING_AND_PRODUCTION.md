@@ -62,7 +62,7 @@ Verify:
 - Safe subprocess usage.
 - Local Ollama not unnecessarily exposed.
 - No hidden telemetry.
-- No private data sent to Norvi.
+- No private data sent to Nexus.
 
 ---
 
@@ -80,7 +80,7 @@ Monitor application traffic during:
 
 Verify:
 
-Norvi only receives required authentication/license traffic.
+Nexus only receives required authentication/license traffic.
 
 No:
 
@@ -92,7 +92,7 @@ No:
 - social credentials
 - client data
 
-is transmitted to Norvi.
+is transmitted to Nexus.
 
 ---
 
@@ -356,7 +356,7 @@ The final product must uphold:
 
 User content belongs to the user.
 
-Norvi does not receive their social-media workflow data.
+Nexus does not receive their social-media workflow data.
 
 No default telemetry.
 
@@ -372,7 +372,7 @@ Any credential leak blocks release.
 
 Any demonstrated cross-client data leak blocks release.
 
-Any hidden user-content transmission to Norvi blocks release.
+Any hidden user-content transmission to Nexus blocks release.
 
 ---
 

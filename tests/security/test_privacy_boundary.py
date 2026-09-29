@@ -1,5 +1,5 @@
 """
-Verify that Norvi integration is not given social-media workflow data.
+Verify that Nexus integration is not given social-media workflow data.
 """
 
 

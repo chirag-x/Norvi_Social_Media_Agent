@@ -73,7 +73,7 @@ Do not put acquisition logic in:
 
 Media stays local except communication explicitly required with the original authorized source provider.
 
-Never upload source media to Norvi.
+Never upload source media to Nexus.
 
 ---
 

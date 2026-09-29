@@ -4,7 +4,7 @@
 **Completed**
 
 ## Overview
-This phase establishes the foundational structure and tooling for the Norvi Social Media Agent. It sets up the repository for clean, maintainable development using standard Python best practices (Python 3.13.15) and our chosen local-first architecture.
+This phase establishes the foundational structure and tooling for the Nexus. It sets up the repository for clean, maintainable development using standard Python best practices (Python 3.13.15) and our chosen local-first architecture.
 
 ## Accomplishments
 1. **Source Structure**: Created the full directory hierarchy inside `src/` (app, ui, domain, services, ai, media, integrations, storage, security, workers, utils, config) and `tests/` (unit, integration, e2e), alongside `assets/` and `scripts/`.

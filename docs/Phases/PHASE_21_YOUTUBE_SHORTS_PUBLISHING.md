@@ -81,7 +81,7 @@ Upload goes:
 User PC
 → YouTube
 
-not through Norvi.
+not through Nexus.
 
 ---
 

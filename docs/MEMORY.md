@@ -3,7 +3,7 @@
 ## Product
 
 Working Name:
-Norvi Social Media Agent
+Nexus
 
 ---
 
@@ -41,7 +41,7 @@ Local.
 User content storage:
 Local.
 
-Norvi server:
+Nexus server:
 Authentication/licensing only.
 
 Paid AI:
@@ -93,7 +93,7 @@ Local recommendations
 
 # Privacy Requirement
 
-Norvi must not collect:
+Nexus must not collect:
 
 - Searches.
 - Videos.
@@ -114,7 +114,7 @@ All social-media workflow data stays on the user's machine.
 
 # Authentication Requirement
 
-The existing Norvi website/account system supplies:
+The existing Nexus website/account system supplies:
 
 - Email login.
 - Password authentication.
@@ -222,7 +222,7 @@ Local only.
 
 Use metrics to improve local recommendations.
 
-No Norvi analytics collection.
+No Nexus analytics collection.
 
 ---
 

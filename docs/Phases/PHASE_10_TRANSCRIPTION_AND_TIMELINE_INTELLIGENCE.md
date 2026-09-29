@@ -93,7 +93,7 @@ Extracted audio stays local.
 
 Keyframes stay local.
 
-No Norvi upload.
+No Nexus upload.
 
 ---
 

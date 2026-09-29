@@ -102,7 +102,7 @@ Fingerprints and content history stay local.
 
 ## Security Requirements
 
-Do not expose local clip hashes/data to Norvi.
+Do not expose local clip hashes/data to Nexus.
 
 ---
 

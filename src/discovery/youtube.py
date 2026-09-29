@@ -48,12 +48,44 @@ class YouTubeProvider(DiscoveryProvider):
                 except Exception as e:
                     logger.warning(f"Failed to parse yt-dlp result: {e}")
                     
-            # Enforce the Top 5 limit strictly, sorted by highest views
+            # Sort by highest views first
             videos.sort(key=lambda x: x.views, reverse=True)
             return videos[:5]
             
         except Exception as e:
             logger.error(f"YouTube search failed: {e}")
+            return []
+
+    async def get_by_url(self, url: str) -> List[VideoResult]:
+        logger.info(f"Direct link detected. Fetching metadata for: {url}")
+        try:
+            ydl_opts = {'quiet': True, 'extract_flat': True}
+            def fetch():
+                with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                    return ydl.extract_info(url, download=False)
+                    
+            res = await asyncio.to_thread(fetch)
+            if not res:
+                return []
+                
+            thumbs = res.get('thumbnails', [])
+            thumb_url = thumbs[-1]['url'] if thumbs else ''
+            
+            video = VideoResult(
+                id=res.get('id', ''),
+                title=res.get('title', 'Unknown Title'),
+                url=res.get('webpage_url', res.get('url', url)),
+                channel=res.get('uploader', 'Unknown'),
+                views=res.get('view_count') or 0,
+                publish_date=res.get('upload_date', 'Unknown'),
+                duration=self._format_duration(res.get('duration') or 0),
+                thumbnail=thumb_url,
+                niche="Direct Link"
+            )
+            return [video]
+            
+        except Exception as e:
+            logger.error(f"Direct URL fetch failed: {e}")
             return []
 
     def _sync_search(self, query: str, max_results: int):

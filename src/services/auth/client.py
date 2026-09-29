@@ -6,11 +6,11 @@ from src.utils.logger import logger
 
 class AuthClient:
     """
-    Handles communication with the Norvi backend for authentication and licensing.
+    Handles communication with the Nexus backend for authentication and licensing.
     """
     def __init__(self):
         self.config = get_config()
-        self.api_url = self.config.norvi_api_url
+        self.api_url = self.config.nexus_api_url
 
     async def login(self, email: str, password: str, activation_key: str) -> Tuple[bool, str, Optional[str]]:
         """
@@ -33,7 +33,7 @@ class AuthClient:
         # we will simulate a success response if the URL is local/mocked, 
         # or attempt the real request if the user has configured a real URL.
         
-        if self.api_url == "https://api.norvi.local":
+        if self.api_url == "https://api.nexus.local":
             # MOCK LOGIN for local development/testing
             logger.info("Using mock authentication because NORVI_API_URL is local.")
             if email and password and activation_key:

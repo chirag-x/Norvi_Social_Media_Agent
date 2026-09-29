@@ -66,7 +66,7 @@ Tests:
 
 ---
 
-# Phase 3 — Norvi Authentication Boundary
+# Phase 3 — Nexus Authentication Boundary
 
 - [x] Login UI.
 - [x] Email field.
@@ -79,7 +79,7 @@ Tests:
 - [x] Secure token storage.
 - [x] No plaintext password persistence.
 
-Do NOT implement the Norvi server/license backend itself.
+Do NOT implement the Nexus server/license backend itself.
 
 ---
 
@@ -301,9 +301,11 @@ App must not kill an Ollama instance that existed before app startup.
 
 Then implement:
 
-- [ ] YouTube.
-- [ ] Instagram.
-- [ ] Facebook.
+- [x] YouTube.
+- [x] Instagram.
+- [x] Facebook.
+- [x] TikTok.
+- [x] X (Twitter).
 
 ---
 
@@ -312,26 +314,26 @@ Then implement:
 - [x] Local schedule database.
 - [x] Date/time.
 - [ ] Timezone.
-- [ ] Per-clip schedule.
+- [x] Per-clip schedule.
 - [ ] Per-platform schedule.
 - [ ] Reschedule.
-- [ ] Cancel.
+- [x] Cancel.
 - [x] Calendar UI.
-- [ ] Persistent execution.
+- [x] Persistent execution.
 
 ---
 
 # Phase 21 — Publishing Queue
 
-- [ ] Job state machine.
-- [ ] Durable queue.
+- [x] Job state machine.
+- [x] Durable queue.
 - [ ] Idempotency key.
 - [ ] Retry policy.
-- [ ] Failure classification.
+- [x] Failure classification.
 - [ ] Publish verification.
 - [ ] External post ID.
 - [ ] External URL.
-- [ ] Queue UI.
+- [x] Queue UI.
 
 ---
 
@@ -384,7 +386,7 @@ Then implement:
 # Phase 26 — Privacy Verification
 
 - [ ] Network audit.
-- [ ] Ensure no user content sent to Norvi.
+- [ ] Ensure no user content sent to Nexus.
 - [ ] No telemetry.
 - [ ] No transcript upload.
 - [ ] No analytics upload.

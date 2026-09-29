@@ -124,7 +124,7 @@ Prefer official supported free/quota-based mechanisms.
 
 Search requests go only to the service required to fulfill the YouTube search.
 
-Norvi must never receive the user's YouTube query or result history.
+Nexus must never receive the user's YouTube query or result history.
 
 Search history should remain local if stored.
 
@@ -172,7 +172,7 @@ Test:
 - Five primary candidates shown when available.
 - Results can be opened on YouTube.
 - User can select a video.
-- Norvi receives no discovery data.
+- Nexus receives no discovery data.
 
 ---
 

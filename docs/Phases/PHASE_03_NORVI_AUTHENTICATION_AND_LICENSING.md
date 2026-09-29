@@ -1,4 +1,4 @@
-# Phase 3: Norvi Authentication Boundary
+# Phase 3: Nexus Authentication Boundary
 
 ## Status
 **Completed**

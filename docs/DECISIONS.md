@@ -43,20 +43,20 @@ Accepted.
 
 ---
 
-## ADR-005 — No Norvi Content Collection
+## ADR-005 — No Nexus Content Collection
 
 Decision:
-Norvi does not receive user videos, clips, prompts, transcripts, analytics, social history, brand data, or client data.
+Nexus does not receive user videos, clips, prompts, transcripts, analytics, social history, brand data, or client data.
 
 Status:
 Accepted.
 
 ---
 
-## ADR-006 — Norvi Authentication Only
+## ADR-006 — Nexus Authentication Only
 
 Decision:
-Norvi backend communication is restricted to authentication, activation/license, entitlement, and session functionality.
+Nexus backend communication is restricted to authentication, activation/license, entitlement, and session functionality.
 
 Activation backend implementation is outside this project's scope.
 
@@ -296,7 +296,7 @@ Accepted.
 ## ADR-029 — No Default Telemetry
 
 Decision:
-No usage analytics or user content telemetry is sent to Norvi by default.
+No usage analytics or user content telemetry is sent to Nexus by default.
 
 Status:
 Accepted.

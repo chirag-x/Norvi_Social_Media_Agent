@@ -45,7 +45,7 @@ Keep Instagram and Facebook behavior separated behind their adapters.
 
 Media goes directly from local app to Meta platform.
 
-Norvi is not a media relay.
+Nexus is not a media relay.
 
 ---
 

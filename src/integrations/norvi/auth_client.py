@@ -1,5 +1,5 @@
 """
-Norvi authentication/license client.
+Nexus authentication/license client.
 
 STRICT PRIVACY BOUNDARY:
 

@@ -102,7 +102,7 @@ Ollama endpoint should remain local.
 
 Do not expose local AI server to the internet.
 
-Do not send AI prompts through Norvi.
+Do not send AI prompts through Nexus.
 
 ---
 

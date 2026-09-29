@@ -10,7 +10,7 @@ Security and privacy must be architectural requirements, not afterthoughts.
 
 # 2. Privacy Guarantee
 
-Norvi must not receive:
+Nexus must not receive:
 
 - Source media.
 - Generated clips.
@@ -26,9 +26,9 @@ Norvi must not receive:
 
 ---
 
-# 3. Allowed Norvi Data
+# 3. Allowed Nexus Data
 
-Norvi may process only data required for:
+Nexus may process only data required for:
 
 - User authentication.
 - Account identity.
@@ -271,7 +271,7 @@ Provide log redaction.
 
 # 21. Crash Reports
 
-Do not automatically upload crash dumps to Norvi.
+Do not automatically upload crash dumps to Nexus.
 
 If optional reporting is ever added:
 
@@ -295,7 +295,7 @@ Do not add analytics SDKs without explicit architecture approval.
 
 The application should conceptually communicate only with:
 
-- Norvi authentication.
+- Nexus authentication.
 - Ollama local service.
 - YouTube/Google services required by chosen integration.
 - Meta services required by chosen integration.
@@ -395,7 +395,7 @@ Before release:
 
 [ ] Privacy traffic audit passes.
 
-[ ] Norvi receives no user content.
+[ ] Nexus receives no user content.
 
 [ ] Ollama localhost security reviewed.
 

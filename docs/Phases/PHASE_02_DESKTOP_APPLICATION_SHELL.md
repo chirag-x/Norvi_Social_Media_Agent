@@ -38,4 +38,4 @@ This phase built the core graphical user interface (GUI) shell of the applicatio
 - [x] Background worker foundation.
 
 ## Next Steps
-Proceeding to **Phase 3: Norvi Authentication and Licensing**, which will integrate the initial login/authentication boundary before allowing access to the main dashboard.
+Proceeding to **Phase 3: Nexus Authentication and Licensing**, which will integrate the initial login/authentication boundary before allowing access to the main dashboard.

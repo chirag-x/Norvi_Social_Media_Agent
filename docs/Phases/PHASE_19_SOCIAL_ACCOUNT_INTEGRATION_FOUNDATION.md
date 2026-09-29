@@ -57,9 +57,9 @@ Platform-specific implementations live in their adapter modules.
 
 ## Privacy Requirements
 
-Social OAuth tokens must not be sent to Norvi.
+Social OAuth tokens must not be sent to Nexus.
 
-Norvi must not proxy social publishing.
+Nexus must not proxy social publishing.
 
 Flow:
 
@@ -69,7 +69,7 @@ User PC
 not:
 
 User PC
-→ Norvi
+→ Nexus
 → Social Platform
 
 ---

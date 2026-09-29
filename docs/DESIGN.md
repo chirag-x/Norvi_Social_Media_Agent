@@ -58,7 +58,7 @@ semantic warning token
 Error:
 semantic destructive token
 
-Exact colors can be adjusted later to match final Norvi branding.
+Exact colors can be adjusted later to match final Nexus branding.
 
 ---
 
@@ -130,7 +130,7 @@ Fields:
 
 - Email.
 - Password.
-- Norvi activation/API key.
+- Nexus activation/API key.
 
 Actions:
 
@@ -475,10 +475,10 @@ Settings should include a clear privacy section:
 
 Explain:
 
-- Norvi does not receive videos.
-- Norvi does not receive transcripts.
-- Norvi does not receive analytics.
-- Norvi does not receive social history.
+- Nexus does not receive videos.
+- Nexus does not receive transcripts.
+- Nexus does not receive analytics.
+- Nexus does not receive social history.
 
 Show network integrations individually so the user knows which external service receives what.
 

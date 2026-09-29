@@ -4,7 +4,7 @@
 These phases transition the application from a video editor into a true social media manager. It introduces a persistent database schema and UI required to queue, schedule, and visually track when content will go live on various platforms.
 
 ## Key Features
-- **Database Schema:** Created the `scheduled_posts` table inside `norvi_local.db` via SQL migrations to persistently store video paths, AI-generated metadata, platform targets, and scheduled release times.
+- **Database Schema:** Created the `scheduled_posts` table inside `nexus_local.db` via SQL migrations to persistently store video paths, AI-generated metadata, platform targets, and scheduled release times.
 - **Publishing Queue Integration:** Added a `QDateTimeEdit` calendar picker directly into the Publishing Queue so the user can accurately set the future publish date/time immediately after generating metadata.
 - **Calendar Dashboard:** Built the `CalendarView` tab featuring a read-only `QTableWidget`. This acts as the command center for the user to see all pending and published posts sorted by their chronological release time.
 

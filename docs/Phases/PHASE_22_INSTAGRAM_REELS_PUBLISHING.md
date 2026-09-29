@@ -42,7 +42,7 @@ Detect requirements and explain them clearly to the user.
 
 User PC communicates directly with Meta services.
 
-No media passes through Norvi.
+No media passes through Nexus.
 
 ---
 

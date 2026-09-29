@@ -1,1 +1,1 @@
-"""Norvi login / activation dialog."""
+"""Nexus login / activation dialog."""

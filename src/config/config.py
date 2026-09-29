@@ -16,8 +16,8 @@ class AppConfig(BaseSettings):
     ollama_model: str = "gemma4:cloud"
 
     # API Keys (Optional at startup)
-    norvi_api_url: str = "https://api.norvi.local"
-    norvi_api_key: str = ""
+    nexus_api_url: str = "https://api.nexus.local"
+    nexus_api_key: str = ""
     youtube_client_id: str = ""
     youtube_client_secret: str = ""
     meta_app_id: str = ""

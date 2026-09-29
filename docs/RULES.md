@@ -109,7 +109,7 @@ Prefer local/open-source/free solutions.
 
 # 7. Privacy Rule
 
-User social-media data must never be sent to Norvi.
+User social-media data must never be sent to Nexus.
 
 Never add telemetry that sends:
 
@@ -122,7 +122,7 @@ Never add telemetry that sends:
 - Social account activity.
 - Brand information.
 
-to Norvi.
+to Nexus.
 
 No hidden analytics SDK.
 
@@ -130,7 +130,7 @@ No hidden analytics SDK.
 
 # 8. Authentication Boundary
 
-Norvi communication is limited to:
+Nexus communication is limited to:
 
 - Authentication.
 - License/activation validation.
@@ -138,7 +138,7 @@ Norvi communication is limited to:
 
 Activation-system implementation is out of scope.
 
-Do not expand Norvi backend responsibilities.
+Do not expand Nexus backend responsibilities.
 
 ---
 

@@ -50,7 +50,6 @@ class ClipLabView(QWidget):
         # Container for when a source is selected
         self.content_container = QWidget()
         content_layout = QVBoxLayout(self.content_container)
-        content_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         
         # Source Details
         self.source_title = QLabel("")
@@ -81,19 +80,26 @@ class ClipLabView(QWidget):
             
         content_layout.addWidget(checklist_frame)
         
-        # Duration Selector
-        from PySide6.QtWidgets import QSpinBox
+        # Duration Selector (preset buttons, radio-style)
+        self.selected_duration = 60  # default
         duration_layout = QHBoxLayout()
-        duration_label = QLabel("Clip Duration (seconds):")
+        duration_label = QLabel("Clip Duration:")
         duration_label.setProperty("class", "subtitle")
         duration_layout.addWidget(duration_label)
         
-        self.duration_spin = QSpinBox()
-        self.duration_spin.setRange(10, 120)
-        self.duration_spin.setValue(60)
-        self.duration_spin.setFixedWidth(100)
-        self.duration_spin.setStyleSheet("background-color: #171C26; color: #F5F7FA; border: 1px solid #70798A; padding: 5px;")
-        duration_layout.addWidget(self.duration_spin)
+        self._duration_buttons = {}
+        for seconds in [30, 60, 90, 120, 180]:
+            label = f"{seconds}s"
+            btn = QPushButton(label)
+            btn.setFixedHeight(34)
+            btn.setFixedWidth(72)
+            btn.setCheckable(True)
+            btn.setChecked(seconds == 60)
+            btn.setProperty("class", "duration_btn")
+            btn.clicked.connect(lambda checked, s=seconds: self._select_duration(s))
+            self._duration_buttons[seconds] = btn
+            duration_layout.addWidget(btn)
+        
         duration_layout.addStretch()
         content_layout.addLayout(duration_layout)
         
@@ -112,11 +118,6 @@ class ClipLabView(QWidget):
         self.btn_stop.hide()
         self.btn_stop.clicked.connect(self._stop_analysis)
         action_layout.addWidget(self.btn_stop)
-        
-        self.btn_clear_cache = QPushButton("Clear Cache")
-        self.btn_clear_cache.setFixedWidth(120)
-        self.btn_clear_cache.clicked.connect(self._clear_cache)
-        action_layout.addWidget(self.btn_clear_cache)
         
         action_layout.addStretch()
         content_layout.addLayout(action_layout)
@@ -166,6 +167,12 @@ class ClipLabView(QWidget):
             self.btn_analyze.setEnabled(True)
         else:
             self.btn_analyze.setEnabled(False)
+            
+    def _select_duration(self, seconds: int):
+        """Handle duration preset button selection (radio-style)."""
+        self.selected_duration = seconds
+        for s, btn in self._duration_buttons.items():
+            btn.setChecked(s == seconds)
             
     def _start_analysis(self):
         video = self.state.active_source
@@ -265,7 +272,8 @@ class ClipLabView(QWidget):
             "niche": self.state.active_source.niche
         }
         
-        return asyncio.run(engine.analyze_transcript(transcript, context))
+        max_dur = getattr(self, 'selected_duration', 60)
+        return asyncio.run(engine.analyze_transcript(transcript, context, max_clip_duration=max_dur))
 
     def _on_gemma_success(self, clips: list):
         self.btn_stop.hide()
@@ -310,20 +318,19 @@ class ClipLabView(QWidget):
         clips_layout.setContentsMargins(0, 20, 0, 0)
         
         title_label = QLabel("Generated Viral Clips")
-        title_label.setStyleSheet("font-size: 18px; font-weight: bold; color: white;")
+        title_label.setStyleSheet("font-size: 18px; font-weight: bold;")
         clips_layout.addWidget(title_label)
         
-        # Sort by virality score descending
-        clips.sort(key=lambda x: x.get('virality_score', 0), reverse=True)
+        # Sort by start_time ascending (chronological order)
+        clips.sort(key=lambda x: x.get('start_time', 0))
         
         for i, clip in enumerate(clips):
             card = QFrame()
+            card.setObjectName("card")
             
             is_dup = clip.get('is_duplicate', False)
             if is_dup:
-                card.setStyleSheet("background-color: #1E293B; border: 2px solid #EF4444; border-radius: 8px; padding: 15px;")
-            else:
-                card.setStyleSheet("background-color: #1E293B; border-radius: 8px; padding: 15px;")
+                card.setStyleSheet("QFrame#card { border: 2px solid #EF4444; }")
                 
             card_layout = QVBoxLayout(card)
             
@@ -333,7 +340,7 @@ class ClipLabView(QWidget):
             if is_dup:
                 title.setStyleSheet("font-size: 16px; font-weight: bold; color: #EF4444; border: none;")
             else:
-                title.setStyleSheet("font-size: 16px; font-weight: bold; color: #38BDF8; border: none;")
+                title.setStyleSheet("font-size: 16px; font-weight: bold; color: #3B82F6; border: none;")
             header_layout.addWidget(title)
             
             score = QLabel(f"Score: {clip.get('virality_score', 0)}/10")
@@ -343,7 +350,8 @@ class ClipLabView(QWidget):
             
             # Timestamps
             time_label = QLabel(f"⏱️ {clip.get('start_time', 0)}s - {clip.get('end_time', 0)}s")
-            time_label.setStyleSheet("color: #94A3B8; border: none;")
+            time_label.setProperty("class", "subtitle")
+            time_label.setStyleSheet("border: none;")
             card_layout.addWidget(time_label)
             
             # Reasoning
@@ -353,11 +361,27 @@ class ClipLabView(QWidget):
                 
             reason = QLabel(reason_text)
             reason.setWordWrap(True)
-            reason.setStyleSheet("color: #CBD5E1; margin-top: 10px; border: none;")
+            reason.setProperty("class", "subtitle")
+            reason.setStyleSheet("margin-top: 10px; border: none;")
             card_layout.addWidget(reason)
             
             # Actions
             btn_layout = QHBoxLayout()
+            
+            btn_preview = QPushButton("Preview Clip")
+            btn_preview.setStyleSheet("""
+                QPushButton {
+                    background-color: transparent; 
+                    color: #38BDF8; 
+                    border: 1px solid #38BDF8; 
+                    border-radius: 4px;
+                    padding: 5px 15px;
+                }
+                QPushButton:hover { background-color: rgba(56, 189, 248, 0.1); }
+            """)
+            btn_preview.clicked.connect(lambda checked, c=clip: self._preview_clip(c))
+            btn_layout.addWidget(btn_preview)
+            
             btn_layout.addStretch()
             
             btn_reject = QPushButton("Reject")
@@ -376,17 +400,17 @@ class ClipLabView(QWidget):
             
             btn_approve = QPushButton("Approve to Queue")
             if is_dup:
-                btn_approve.setEnabled(False)
-                btn_approve.setText("Already Extracted")
                 btn_approve.setStyleSheet("""
                     QPushButton {
-                        background-color: #475569; 
-                        color: #94A3B8; 
+                        background-color: #22C55E; 
+                        color: white; 
                         border-radius: 4px;
                         padding: 5px 15px; 
                         font-weight: bold;
                     }
+                    QPushButton:hover { background-color: #16A34A; }
                 """)
+                btn_approve.clicked.connect(lambda checked, c=clip, f=card, btn=btn_approve: self._approve_duplicate(c, f, btn))
             else:
                 btn_approve.setStyleSheet("""
                     QPushButton {
@@ -398,9 +422,8 @@ class ClipLabView(QWidget):
                     }
                     QPushButton:hover { background-color: #16A34A; }
                 """)
+                btn_approve.clicked.connect(lambda checked, c=clip, f=card, btn=btn_approve: self._approve_clip(c, f, btn))
             
-            # Pass clip data to approval function
-            btn_approve.clicked.connect(lambda checked, c=clip, f=card, btn=btn_approve: self._approve_clip(c, f, btn))
             btn_layout.addWidget(btn_approve)
             
             card_layout.addLayout(btn_layout)
@@ -409,7 +432,116 @@ class ClipLabView(QWidget):
         clips_layout.addStretch() # Pushes cards to the top
         self.main_layout.addWidget(self.clips_container)
         
-    def _approve_clip(self, clip_data: dict, card: QFrame, btn: QPushButton):
+    def _preview_clip(self, clip_data: dict):
+        from src.services.media.downloader import MediaProcessor
+        from src.ui.components.video_player import PreviewDialog
+        
+        processor = MediaProcessor()
+        safe_title = processor._sanitize_filename(self.state.active_source.title)
+        source_video = processor.cache_dir / f"{safe_title}.mp4"
+        
+        if not source_video.exists():
+            self.status_label.setText("Error: Source video not found in cache.")
+            self.status_label.setStyleSheet("color: #EF4444;")
+            self.status_label.show()
+            return
+            
+        dialog = PreviewDialog(
+            str(source_video), 
+            clip_data.get('start_time', 0.0), 
+            clip_data.get('end_time', 0.0),
+            self
+        )
+        dialog.exec()
+        
+    def _approve_duplicate(self, clip_data: dict, card, btn):
+        """Show a styled confirmation before approving a duplicate clip."""
+        from PySide6.QtWidgets import QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton
+        from PySide6.QtCore import Qt
+        
+        dialog = QDialog(self)
+        dialog.setWindowTitle("Duplicate Clip")
+        dialog.setFixedSize(460, 200)
+        dialog.setModal(True)
+        
+        outer = QVBoxLayout(dialog)
+        outer.setContentsMargins(0, 0, 0, 0)
+        
+        container = QWidget()
+        container.setObjectName("dup_dialog")
+        container.setStyleSheet("""
+            QWidget#dup_dialog {
+                background-color: #111827;
+                border-radius: 12px;
+            }
+        """)
+        vbox = QVBoxLayout(container)
+        vbox.setContentsMargins(28, 24, 28, 24)
+        vbox.setSpacing(14)
+        
+        # Icon + title row
+        title_row = QHBoxLayout()
+        icon_lbl = QLabel("⚠️")
+        icon_lbl.setStyleSheet("font-size: 24px; border: none;")
+        title_row.addWidget(icon_lbl)
+        
+        title_lbl = QLabel("Already Extracted")
+        title_lbl.setStyleSheet("color: #FBBF24; font-size: 17px; font-weight: bold; border: none;")
+        title_row.addWidget(title_lbl)
+        title_row.addStretch()
+        vbox.addLayout(title_row)
+        
+        # Message
+        msg = QLabel("This clip was already extracted from this video once.\nApproving again will create a duplicate in your queue.")
+        msg.setWordWrap(True)
+        msg.setStyleSheet("color: #9CA3AF; font-size: 13px; border: none; line-height: 1.5;")
+        vbox.addWidget(msg)
+        
+        vbox.addStretch()
+        
+        # Buttons
+        btn_row = QHBoxLayout()
+        btn_row.addStretch()
+        
+        btn_cancel = QPushButton("Cancel")
+        btn_cancel.setFixedSize(110, 36)
+        btn_cancel.setStyleSheet("""
+            QPushButton {
+                background-color: transparent;
+                border: 1px solid #4B5563;
+                color: #D1D5DB;
+                border-radius: 8px;
+                font-size: 13px;
+                font-weight: 600;
+            }
+            QPushButton:hover { border-color: #6B7280; color: white; }
+        """)
+        btn_cancel.clicked.connect(dialog.reject)
+        btn_row.addWidget(btn_cancel)
+        
+        btn_ok = QPushButton("Approve Anyway")
+        btn_ok.setFixedSize(140, 36)
+        btn_ok.setStyleSheet("""
+            QPushButton {
+                background-color: #22C55E;
+                color: white;
+                border-radius: 8px;
+                font-size: 13px;
+                font-weight: 700;
+                border: none;
+            }
+            QPushButton:hover { background-color: #16A34A; }
+        """)
+        btn_ok.clicked.connect(dialog.accept)
+        btn_row.addWidget(btn_ok)
+        vbox.addLayout(btn_row)
+        
+        outer.addWidget(container)
+        
+        if dialog.exec() == QDialog.DialogCode.Accepted:
+            self._approve_clip(clip_data, card, btn)
+
+    def _approve_clip(self, clip_data: dict, card, btn: QPushButton):
         btn.setText("Saved to outputs!")
         btn.setStyleSheet("background-color: #374151; color: #9CA3AF; border-radius: 4px; padding: 5px 15px; font-weight: bold;")
         btn.setEnabled(False)
@@ -472,26 +604,6 @@ class ClipLabView(QWidget):
         self.status_label.setText("Analysis cancelled.")
         self.status_label.setStyleSheet("color: #EF4444;")
         self.progress_bar.hide()
-
-    def _clear_cache(self):
-        import shutil
-        from pathlib import Path
-        
-        # Clear temporary downloaded videos
-        cache_dir = Path("cache")
-        if cache_dir.exists():
-            shutil.rmtree(cache_dir)
-            cache_dir.mkdir()
-            
-        # Clear rendered video clips
-        outputs_dir = Path("outputs")
-        if outputs_dir.exists():
-            shutil.rmtree(outputs_dir)
-            outputs_dir.mkdir()
-            
-        self.status_label.setText("Cache and output files cleared successfully.")
-        self.status_label.setStyleSheet("color: #22C55E; font-weight: bold;")
-        self.status_label.show()
 
     def _on_download_error(self, err):
         self.btn_stop.hide()

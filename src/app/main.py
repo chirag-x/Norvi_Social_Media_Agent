@@ -9,9 +9,9 @@ from src.utils.logger import logger
 
 def main():
     """
-    Main entry point for the Norvi Social Media Agent application.
+    Main entry point for the Nexus application.
     """
-    logger.info("Starting Norvi Social Media Agent...")
+    logger.info("Starting Nexus...")
     
     try:
         config = get_config()
