@@ -25,6 +25,13 @@ def bootstrap_application() -> None:
     logger.info("Starting Nexus...")
     
     try:
+        import ctypes
+        myappid = 'NorviAgency.Nexus.Agent.1.0'
+        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
+    except Exception:
+        pass
+
+    try:
         config = get_config()
         logger.info(f"Environment: {config.environment}")
         

@@ -134,9 +134,22 @@ class PublishingQueueView(QWidget):
         splitter.addWidget(left_panel)
         
         # Right Panel (Metadata Editor)
+        from PySide6.QtWidgets import QScrollArea
         self.right_panel = QWidget()
-        right_layout = QVBoxLayout(self.right_panel)
-        right_layout.setContentsMargins(10, 0, 0, 0)
+        right_layout_main = QVBoxLayout(self.right_panel)
+        right_layout_main.setContentsMargins(0, 0, 0, 0)
+        
+        scroll = QScrollArea()
+        scroll.setWidgetResizable(True)
+        scroll.setStyleSheet("QScrollArea { border: none; background: transparent; }")
+        
+        scroll_content = QWidget()
+        scroll_content.setStyleSheet("background: transparent;")
+        right_layout = QVBoxLayout(scroll_content)
+        right_layout.setContentsMargins(10, 0, 10, 0)
+        
+        scroll.setWidget(scroll_content)
+        right_layout_main.addWidget(scroll)
         
         self.lbl_selected = QLabel("Select a video to prepare for publishing.")
         self.lbl_selected.setStyleSheet(" font-weight: bold;")

@@ -99,18 +99,18 @@ class LoginView(QWidget):
         self.thread_pool.start(worker)
 
     def _perform_login_sync(self, email, password, activation_key):
-        # We need to run the async httpx call synchronously inside the worker thread
+        # Run the async 2-step NORVI auth flow synchronously inside the worker thread
         return asyncio.run(self.auth_client.login(email, password, activation_key))
 
     def on_login_result(self, result):
-        success, message, token = result
-        if success and token:
-            if SessionManager.save_token(token):
+        success, message, token, expires_at = result
+        if success and token and expires_at is not None:
+            if SessionManager.save_token(token, expires_at):
                 # Ensure local DB knows about this user
                 from src.storage.daos.user_dao import UserDAO
                 email = self.email_input.text().strip()
                 UserDAO().create_or_update(email)
-                
+
                 self.login_successful.emit()
                 self.reset()
             else:

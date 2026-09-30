@@ -54,8 +54,45 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        from PySide6.QtGui import QIcon
-        self.setWindowIcon(QIcon("assets/nexus_norvi_agent_logo.jpg"))
+        from PySide6.QtGui import QIcon, QAction
+        from PySide6.QtWidgets import QSystemTrayIcon, QMenu
+        
+        self.app_icon = QIcon("assets/nexus_norvi_agent_logo.jpg")
+        self.setWindowIcon(self.app_icon)
+        
+        # System Tray Integration
+        self.tray_icon = QSystemTrayIcon(self)
+        self.tray_icon.setIcon(self.app_icon)
+        
+        self.tray_menu = QMenu()
+        self.tray_menu.setStyleSheet("""
+            QMenu {
+                background-color: #F8FAFC;
+                color: #0F172A;
+                border: 1px solid #CBD5E1;
+                border-radius: 4px;
+                padding: 4px;
+            }
+            QMenu::item {
+                padding: 6px 24px;
+                border-radius: 4px;
+            }
+            QMenu::item:selected {
+                background-color: #3B82F6;
+                color: white;
+            }
+        """)
+        show_action = QAction("Show Nexus", self)
+        show_action.triggered.connect(self.show)
+        quit_action = QAction("Quit Nexus", self)
+        quit_action.triggered.connect(self.force_quit)
+        
+        self.tray_menu.addAction(show_action)
+        self.tray_menu.addAction(quit_action)
+        self.tray_icon.setContextMenu(self.tray_menu)
+        
+        self.tray_icon.activated.connect(self._tray_icon_activated)
+        self.tray_icon.show()
         self.setWindowTitle("Nexus")
         self.resize(1200, 800)
         self.setMinimumSize(800, 600)
@@ -209,11 +246,33 @@ class MainWindow(QMainWindow):
         self._refresh_titlebar_color()
 
     # ── Close ─────────────────────────────────────────────────────────────────
-    def closeEvent(self, event):
+    # ----------------------------------------------------------------------
+    # Close & Tray Logic
+    # ----------------------------------------------------------------------
+    def _tray_icon_activated(self, reason):
+        from PySide6.QtWidgets import QSystemTrayIcon
+        if reason == QSystemTrayIcon.ActivationReason.DoubleClick:
+            self.show()
+            self.activateWindow()
+
+    def force_quit(self):
+        """Actually close and quit the application."""
         self.settings.setValue("geometry", self.saveGeometry())
         self.settings.setValue("windowState", self.saveState())
-
+        
         from src.ai.ollama_manager import OllamaManager
         OllamaManager.get_instance().stop_safely()
+        
+        from PySide6.QtWidgets import QApplication
+        QApplication.instance().quit()
 
-        super().closeEvent(event)
+    def closeEvent(self, event):
+        """Minimize to tray instead of closing."""
+        event.ignore()
+        self.hide()
+        self.tray_icon.showMessage(
+            "Nexus is still running",
+            "The application has been minimized to the system tray. Right-click the icon to quit.",
+            QIcon("assets/nexus_norvi_agent_logo.jpg"),
+            2000
+        )

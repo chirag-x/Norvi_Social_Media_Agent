@@ -34,9 +34,22 @@ class DashboardView(QWidget):
         self.ollama = OllamaManager.get_instance()
         self.model_mgr = ModelManager.get_instance()
         
-        main_layout = QVBoxLayout(self)
+        outer_layout = QVBoxLayout(self)
+        outer_layout.setContentsMargins(0, 0, 0, 0)
+        
+        from PySide6.QtWidgets import QScrollArea
+        scroll = QScrollArea()
+        scroll.setWidgetResizable(True)
+        scroll.setStyleSheet("QScrollArea { border: none; background: transparent; }")
+        
+        scroll_content = QWidget()
+        scroll_content.setStyleSheet("background: transparent;")
+        main_layout = QVBoxLayout(scroll_content)
         main_layout.setContentsMargins(20, 20, 20, 20)
         main_layout.setSpacing(20)
+        
+        scroll.setWidget(scroll_content)
+        outer_layout.addWidget(scroll)
         
         title = QLabel("Dashboard")
         title.setProperty("class", "title")
@@ -127,7 +140,6 @@ class DashboardView(QWidget):
         AppState.get_instance().active_source_changed.connect(self._on_active_source_changed)
         
         main_layout.addStretch()
-        self.setLayout(main_layout)
         
         # Initial check
         self.check_ai_status()

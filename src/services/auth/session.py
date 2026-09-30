@@ -1,50 +1,96 @@
-import keyring
+import os
+import json
+import time
 from typing import Optional
 from src.utils.logger import logger
 
-SERVICE_NAME = "nexus_social_media_agent"
-TOKEN_KEY = "access_token"
+# The lease file is stored in the user's home directory.
+# Using a product-specific name ("nexus") prevents collisions with other
+# NORVI agents (e.g. Voro uses ".norvi_voro_lease") installed on the same PC.
+LEASE_FILE = os.path.join(os.path.expanduser("~"), ".norvi_nexus_lease")
+
 
 class SessionManager:
     """
-    Manages the user's active session securely using the OS credential store.
+    Manages the user's active session using the NORVI Agency lease file system.
+
+    The lease is a JSON file stored at ~/.norvi_nexus_lease containing:
+        {
+            "token":      "<JWT lease string>",
+            "expires_at": <unix timestamp float>
+        }
+
+    This approach is consistent with norvi_gatekeeper.py used by Voro and
+    all other NORVI agents, allowing the backend to manage lease lifecycles
+    centrally.
     """
-    
+
+    # ── Save ──────────────────────────────────────────────────────────────────
     @staticmethod
-    def save_token(token: str) -> bool:
-        """Saves the access token securely."""
+    def save_token(token: str, expires_at: float) -> bool:
+        """
+        Writes the JWT lease and its expiration timestamp to the lease file.
+        Returns True on success, False on failure.
+        """
         try:
-            keyring.set_password(SERVICE_NAME, TOKEN_KEY, token)
-            logger.info("Session token saved securely.")
+            with open(LEASE_FILE, "w") as f:
+                json.dump({"token": token, "expires_at": expires_at}, f)
+            logger.info(f"Nexus lease saved to {LEASE_FILE}.")
             return True
         except Exception as e:
-            logger.error(f"Failed to save session token: {e}")
+            logger.error(f"Failed to save Nexus lease: {e}")
             return False
 
+    # ── Load ──────────────────────────────────────────────────────────────────
     @staticmethod
-    def get_token() -> Optional[str]:
-        """Retrieves the saved access token, if any."""
+    def load_lease() -> Optional[dict]:
+        """
+        Reads and validates the lease file.
+        Returns the lease dict if the file exists and the lease has NOT expired.
+        Returns None if the file is missing, unreadable, or the lease is expired.
+        """
+        if not os.path.exists(LEASE_FILE):
+            return None
         try:
-            return keyring.get_password(SERVICE_NAME, TOKEN_KEY)
+            with open(LEASE_FILE, "r") as f:
+                data = json.load(f)
+            expires_at = data.get("expires_at")
+            if expires_at and time.time() > float(expires_at):
+                logger.info("Nexus lease has expired.")
+                return None
+            return data
         except Exception as e:
-            logger.error(f"Failed to retrieve session token: {e}")
+            logger.warning(f"Could not read Nexus lease file: {e}")
             return None
 
+    # ── Token retrieval ───────────────────────────────────────────────────────
     @staticmethod
-    def clear_session() -> bool:
-        """Deletes the saved access token (logout)."""
-        try:
-            keyring.delete_password(SERVICE_NAME, TOKEN_KEY)
-            logger.info("Session token cleared.")
-            return True
-        except keyring.errors.PasswordDeleteError:
-            # Token was already gone, that's fine
-            return True
-        except Exception as e:
-            logger.error(f"Failed to clear session token: {e}")
-            return False
+    def get_token() -> Optional[str]:
+        """Returns the raw JWT lease string if the session is still valid."""
+        lease = SessionManager.load_lease()
+        return lease.get("token") if lease else None
 
+    # ── Authentication check ──────────────────────────────────────────────────
     @staticmethod
     def is_authenticated() -> bool:
-        """Checks if a valid token exists."""
-        return SessionManager.get_token() is not None
+        """
+        Returns True if a valid, unexpired lease exists on disk.
+        This is checked at app startup to skip the login screen entirely.
+        """
+        return SessionManager.load_lease() is not None
+
+    # ── Logout / Clear ────────────────────────────────────────────────────────
+    @staticmethod
+    def clear_session() -> bool:
+        """
+        Deletes the lease file from disk (logout).
+        Returns True even if the file didn't exist (idempotent).
+        """
+        try:
+            if os.path.exists(LEASE_FILE):
+                os.remove(LEASE_FILE)
+                logger.info("Nexus lease file removed (logout).")
+            return True
+        except Exception as e:
+            logger.error(f"Failed to clear Nexus lease: {e}")
+            return False

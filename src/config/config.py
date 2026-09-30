@@ -2,6 +2,10 @@ import os
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
+def _get_default_app_data_dir() -> str:
+    appdata = os.getenv("APPDATA", os.path.expanduser("~"))
+    return os.path.join(appdata, "Norvi", "Nexus")
+
 class AppConfig(BaseSettings):
     """
     Application configuration validated by Pydantic.
@@ -9,7 +13,7 @@ class AppConfig(BaseSettings):
     """
     environment: str = "development"
     log_level: str = "INFO"
-    app_data_dir: str = "app_data"
+    app_data_dir: str = _get_default_app_data_dir()
 
     # Ollama
     ollama_host: str = "http://localhost:11434"
